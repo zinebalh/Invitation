@@ -1,9 +1,6 @@
 /*=====================================================
-        INVITATION SPA PREMIUM
-        STYLE.CSS - PARTIE 1
+                RESET
 ======================================================*/
-
-/************* RESET *************/
 
 *{
     margin:0;
@@ -19,55 +16,56 @@ body{
 
     font-family:'Poppins',sans-serif;
 
-    background:#f8f4ee;
+    background:
+    radial-gradient(circle at top,#ffffff,#f9f5ef);
 
     overflow-x:hidden;
+
+    min-height:100vh;
 
     color:#555;
 
 }
 
-/************* FOND *************/
+/*=====================================================
+            PETALES
+======================================================*/
 
-.background{
+#petals{
 
     position:fixed;
 
     inset:0;
 
-    background:
-    radial-gradient(circle at top,#ffffff,#f7f2ea 60%,#efe5d7);
+    pointer-events:none;
 
-    z-index:-10;
+    z-index:2;
 
 }
 
-.background::before{
+/*=====================================================
+            CONFETTIS
+======================================================*/
 
-    content:"";
+#confetti{
 
-    position:absolute;
+    position:fixed;
 
     inset:0;
 
-    background:
+    pointer-events:none;
 
-    radial-gradient(circle at 15% 20%,
-    rgba(255,255,255,.9),
-    transparent 35%),
-
-    radial-gradient(circle at 80% 75%,
-    rgba(255,255,255,.6),
-    transparent 40%);
+    z-index:20;
 
 }
 
-/************* SECTION *************/
+/*=====================================================
+                INTRO
+======================================================*/
 
-#home{
+#intro{
 
     width:100%;
-
     height:100vh;
 
     display:flex;
@@ -76,121 +74,42 @@ body{
 
     align-items:center;
 
+    background:
+
+    linear-gradient(rgba(255,255,255,.2),
+    rgba(255,255,255,.2)),
+
+    radial-gradient(circle,#fff,#f5efe6);
+
 }
 
-.intro{
+/*=====================================================
+            ENVELOPPE
+======================================================*/
+
+.envelope-container{
 
     text-align:center;
 
 }
 
-.intro h3{
-
-    font-family:'Cormorant Garamond',serif;
-
-    color:#8f6e45;
-
-    font-size:44px;
-
-    margin-bottom:35px;
-
-}
-
-/*************************************************
-                ENVELOPPE
-**************************************************/
-
-#envelope{
+.envelope{
 
     position:relative;
 
-    width:430px;
+    width:360px;
 
-    height:300px;
-
-    margin:auto;
+    height:230px;
 
     cursor:pointer;
 
-    transition:.8s;
+    perspective:1200px;
 
 }
 
-/************* OMBRE *************/
+/* Base */
 
-.shadow{
-
-    position:absolute;
-
-    width:320px;
-
-    height:30px;
-
-    left:50%;
-
-    bottom:-18px;
-
-    transform:translateX(-50%);
-
-    background:rgba(0,0,0,.18);
-
-    border-radius:50%;
-
-    filter:blur(18px);
-
-}
-
-/************* DOS *************/
-
-.back{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#dec4a4;
-
-    border-radius:14px;
-
-    overflow:hidden;
-
-    box-shadow:
-
-    0 25px 50px rgba(0,0,0,.15);
-
-}
-
-/************* LETTRE *************/
-
-.letter{
-
-    position:absolute;
-
-    left:22px;
-
-    right:22px;
-
-    bottom:18px;
-
-    height:245px;
-
-    background:white;
-
-    border-radius:10px;
-
-    z-index:2;
-
-    overflow:hidden;
-
-    transition:1.2s ease;
-
-    box-shadow:
-
-    0 12px 30px rgba(0,0,0,.15);
-
-}
-
-.letter::before{
+.envelope::before{
 
     content:"";
 
@@ -198,89 +117,17 @@ body{
 
     inset:0;
 
-    background:
+    background:#d8c3a5;
 
-    linear-gradient(
+    border-radius:6px;
 
-        135deg,
+    box-shadow:
 
-        rgba(255,255,255,.95),
-
-        rgba(248,245,239,.95)
-
-    );
+    0 20px 50px rgba(0,0,0,.15);
 
 }
 
-.letter-content{
-
-    position:relative;
-
-    z-index:5;
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:30px;
-
-}
-
-.letter-content h1{
-
-    font-family:'Cormorant Garamond',serif;
-
-    color:#8f6e45;
-
-    font-size:38px;
-
-    margin-bottom:15px;
-
-    text-align:center;
-
-}
-
-.letter-content p{
-
-    text-align:center;
-
-    color:#777;
-
-    line-height:1.8;
-
-}
-
-/************* FACE AVANT *************/
-
-.front{
-
-    position:absolute;
-
-    left:0;
-
-    right:0;
-
-    bottom:0;
-
-    height:175px;
-
-    background:#e5c9a5;
-
-    clip-path:polygon(0 0,50% 75%,100% 0,100% 100%,0 100%);
-
-    z-index:8;
-
-}
-
-/************* RABAT *************/
+/* Rabat */
 
 .flap{
 
@@ -292,91 +139,93 @@ body{
 
     width:100%;
 
-    height:175px;
+    height:120px;
 
-    background:#cfaf87;
+    background:#ccb08c;
 
     clip-path:polygon(0 0,100% 0,50% 100%);
 
     transform-origin:top;
 
-    transition:1.2s;
+    transition:1s;
 
-    z-index:12;
+    z-index:5;
 
 }
 
-/************* SCEAU *************/
+/* Lettre */
 
-.seal{
+.letter-preview{
 
     position:absolute;
 
-    left:50%;
+    width:92%;
 
-    top:105px;
+    height:190px;
 
-    transform:translateX(-50%);
+    background:white;
 
-    width:62px;
+    left:4%;
 
-    height:62px;
+    top:20px;
 
-    border-radius:50%;
-
-    background:#b62d38;
-
-    color:white;
+    border-radius:8px;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
     align-items:center;
 
+    transition:1s;
+
+    z-index:2;
+
+}
+
+.letter-preview h2{
+
+    font-size:40px;
+
+}
+
+.letter-preview p{
+
+    margin-top:10px;
+
+    font-family:'Cormorant Garamond',serif;
+
     font-size:28px;
 
-    z-index:20;
-
-    transition:.5s;
-
 }
 
-/************* OUVERTURE *************/
+/* Animation */
 
-#envelope.open .seal{
-
-    opacity:0;
-
-    transform:translateX(-50%) scale(.2);
-
-}
-
-#envelope.open .flap{
+.envelope.open .flap{
 
     transform:rotateX(180deg);
 
-    z-index:1;
+}
+
+.envelope.open .letter-preview{
+
+    transform:translateY(-130px);
 
 }
 
-#envelope.open .letter{
+/*=====================================================
+            TEXTE
+======================================================*/
 
-    transform:translateY(-185px);
+.open-text{
 
-    z-index:15;
-
-}
-
-/************* TEXTE *************/
-
-.click{
-
-    margin-top:45px;
-
-    color:#8f6e45;
+    margin-top:40px;
 
     font-size:18px;
+
+    color:#9d7b5b;
 
     animation:pulse 2s infinite;
 
@@ -384,38 +233,35 @@ body{
 
 @keyframes pulse{
 
-0%{transform:scale(1);}
-50%{transform:scale(1.08);}
-100%{transform:scale(1);}
+50%{
+
+transform:scale(1.08);
+
+}
 
 }
 
 /*=====================================================
-        STYLE.CSS - PARTIE 2
-        CARTE D'INVITATION
+            INVITATION
 ======================================================*/
-
-/********************
-    SECTION INVITATION
-********************/
 
 #invitation{
 
     display:none;
 
-    min-height:100vh;
-
-    padding:80px 20px;
-
     justify-content:center;
 
     align-items:center;
 
+    min-height:100vh;
+
+    padding:70px 20px;
+
 }
 
-/********************
-        CARTE
-********************/
+/*=====================================================
+            CARTE
+======================================================*/
 
 .card{
 
@@ -425,25 +271,21 @@ body{
 
     max-width:95%;
 
-    background:#fffdf9;
+    background:white;
 
-    border-radius:26px;
-
-    overflow:hidden;
+    border-radius:25px;
 
     padding:70px;
 
     box-shadow:
 
-        0 25px 70px rgba(0,0,0,.15);
+    0 30px 80px rgba(0,0,0,.15);
 
-    animation:cardAppear 1s ease;
+    overflow:hidden;
 
 }
 
-/********************
-    BORDURE
-********************/
+/* Bordure dorée */
 
 .card::before{
 
@@ -453,7 +295,7 @@ body{
 
     inset:18px;
 
-    border:2px solid #d7b56d;
+    border:2px solid #d8b36b;
 
     border-radius:18px;
 
@@ -461,141 +303,136 @@ body{
 
 }
 
-/********************
-    DECORATIONS
-********************/
 
-.decor{
+/*=====================================================
+            DECORATIONS
+======================================================*/
+
+.leaf{
 
     position:absolute;
 
-    width:220px;
+    font-size:55px;
 
-    height:220px;
-
-    opacity:.15;
-
-    border-radius:50%;
-
-    filter:blur(25px);
+    opacity:.18;
 
 }
 
-.decor1{
+.leaf1{
 
-    top:-70px;
+    top:25px;
 
-    left:-70px;
+    left:25px;
 
-    background:#c9dfc5;
-
-}
-
-.decor2{
-
-    top:-70px;
-
-    right:-70px;
-
-    background:#dbe9cf;
+    transform:rotate(-25deg);
 
 }
 
-.decor3{
+.leaf2{
 
-    bottom:-70px;
+    bottom:25px;
 
-    left:-70px;
+    right:25px;
 
-    background:#d4e4c9;
-
-}
-
-.decor4{
-
-    bottom:-70px;
-
-    right:-70px;
-
-    background:#c7dcc1;
+    transform:rotate(150deg);
 
 }
 
-/********************
-        TITRES
-********************/
+.flower{
+
+    position:absolute;
+
+    font-size:28px;
+
+    opacity:.9;
+
+}
+
+.flower1{
+
+    top:60px;
+
+    right:70px;
+
+}
+
+.flower2{
+
+    bottom:60px;
+
+    left:70px;
+
+}
+
+/*=====================================================
+                TITRES
+======================================================*/
 
 .card h1{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:60px;
-
-    color:#8f6e45;
+    font-size:56px;
 
     text-align:center;
+
+    color:#8c6b42;
+
+    margin-bottom:10px;
 
 }
 
-.card h2{
-
-    margin-top:10px;
+.card h3{
 
     text-align:center;
-
-    font-size:28px;
 
     font-weight:300;
 
-    color:#aa8d66;
+    color:#9a8c78;
+
+    font-size:24px;
+
+    margin-bottom:25px;
 
 }
 
-/********************
-    LIGNE
-********************/
+.separator{
 
-.line{
-
-    width:150px;
+    width:120px;
 
     height:2px;
 
-    margin:30px auto 45px;
+    background:#d6b46d;
 
-    background:linear-gradient(
-        to right,
-        transparent,
-        #d7b56d,
-        transparent);
+    margin:25px auto 40px;
 
 }
 
-/********************
-        TEXTE
-********************/
+/*=====================================================
+                MESSAGE
+======================================================*/
 
-.card p{
+.message{
 
-    max-width:720px;
+    font-size:19px;
 
-    margin:auto;
+    line-height:1.9;
 
     text-align:center;
 
-    line-height:2;
+    color:#555;
 
-    font-size:20px;
+    max-width:700px;
 
-    color:#666;
+    margin:auto;
 
 }
 
-/********************
-    DATE + HEURE
-********************/
+/*=====================================================
+                INFOS
+======================================================*/
 
-.details{
+.infos{
 
     display:flex;
 
@@ -609,98 +446,77 @@ body{
 
 }
 
-.box{
+.info{
 
-    width:220px;
+    background:#faf7f2;
 
-    padding:22px;
-
-    background:white;
+    border:1px solid #eadfcf;
 
     border-radius:18px;
 
-    text-align:center;
-
-    border:1px solid #ece2d4;
-
-    box-shadow:
-
-        0 10px 30px rgba(0,0,0,.06);
-
-    transition:.35s;
-
-}
-
-.box:hover{
-
-    transform:translateY(-8px);
-
-}
-
-.box span{
-
-    display:block;
-
-    font-size:34px;
-
-    margin-bottom:12px;
-
-}
-
-.box strong{
-
-    color:#8f6e45;
+    padding:18px 30px;
 
     font-size:18px;
 
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:.4s;
+
 }
 
-/********************
-        LOCALISATION
-********************/
+.info:hover{
 
-.location{
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
+
+/*=====================================================
+            BOUTON MAP
+======================================================*/
+
+.map{
 
     display:block;
 
-    width:340px;
+    width:280px;
 
-    max-width:100%;
-
-    margin:45px auto;
-
-    padding:18px;
+    margin:40px auto;
 
     text-align:center;
 
     text-decoration:none;
 
+    background:#b9935a;
+
     color:white;
+
+    padding:15px;
 
     border-radius:50px;
 
-    background:linear-gradient(
-        135deg,
-        #d7b56d,
-        #b98d49);
+    font-size:18px;
 
-    transition:.35s;
+    transition:.4s;
 
 }
 
-.location:hover{
+.map:hover{
 
-    transform:translateY(-5px);
+    background:#8e6f42;
 
-    box-shadow:
-
-        0 20px 40px rgba(185,141,73,.35);
+    transform:scale(1.05);
 
 }
 
-/********************
-    COMPTE À REBOURS
-********************/
+/*=====================================================
+            COMPTE A REBOURS
+======================================================*/
 
 #countdown{
 
@@ -708,7 +524,7 @@ body{
 
     justify-content:center;
 
-    gap:18px;
+    gap:20px;
 
     flex-wrap:wrap;
 
@@ -726,6 +542,8 @@ body{
 
     border-radius:18px;
 
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
     display:flex;
 
     flex-direction:column;
@@ -734,84 +552,50 @@ body{
 
     align-items:center;
 
-    border:1px solid #ece2d4;
-
-    box-shadow:
-
-        0 10px 25px rgba(0,0,0,.08);
-
 }
 
 #countdown span{
 
-    font-size:34px;
+    font-size:32px;
 
-    font-family:'Cormorant Garamond',serif;
+    font-weight:bold;
 
-    color:#b98d49;
+    color:#b9935a;
 
 }
 
 #countdown small{
 
-    margin-top:5px;
+    margin-top:6px;
 
-    color:#888;
-
-    font-size:13px;
+    color:#777;
 
 }
 
-/********************
-    QUESTION
-********************/
+
+/*=====================================================
+                QUESTION
+======================================================*/
 
 .question{
 
-    margin-top:30px;
+    margin-top:20px;
+
+    margin-bottom:35px;
 
     text-align:center;
 
-    font-size:34px;
+    font-size:24px;
 
     font-family:'Cormorant Garamond',serif;
 
-    color:#8f6e45;
-
-}
-
-/********************
-    ANIMATION
-********************/
-
-@keyframes cardAppear{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(60px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
+    color:#8c6b42;
 
 }
 
 /*=====================================================
-        STYLE.CSS - PARTIE 3
-        BOUTONS - MERCI - RESPONSIVE
+                BOUTONS
 ======================================================*/
-
-/********************
-      BOUTONS
-********************/
 
 .buttons{
 
@@ -819,9 +603,7 @@ body{
 
     width:100%;
 
-    height:170px;
-
-    margin-top:40px;
+    height:140px;
 
 }
 
@@ -829,7 +611,7 @@ body{
 
     position:absolute;
 
-    width:220px;
+    width:210px;
 
     height:60px;
 
@@ -837,72 +619,61 @@ body{
 
     border-radius:50px;
 
-    cursor:pointer;
-
     font-size:18px;
 
-    font-weight:600;
+    cursor:pointer;
 
     transition:.35s;
 
-    user-select:none;
+    font-weight:600;
 
-    -webkit-user-select:none;
-
-    -webkit-tap-highlight-color:transparent;
+    font-family:'Poppins',sans-serif;
 
 }
-
-/********************
-      OUI
-********************/
 
 #yes{
 
     left:calc(50% - 240px);
 
-    top:50px;
+    background:linear-gradient(135deg,#d8b36b,#b9935a);
 
     color:white;
 
-    background:linear-gradient(
-        135deg,
-        #d7b56d,
-        #b88d4d);
-
-    box-shadow:0 15px 35px rgba(184,141,77,.35);
+    box-shadow:0 10px 25px rgba(185,147,90,.35);
 
 }
 
 #yes:hover{
 
-    transform:translateY(-6px) scale(1.04);
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:0 20px 35px rgba(185,147,90,.45);
 
 }
-
-/********************
-      NON
-********************/
 
 #no{
 
     left:calc(50% + 20px);
 
-    top:50px;
-
     background:white;
 
-    color:#8f6e45;
+    color:#8c6b42;
 
-    border:2px solid #d7b56d;
+    border:2px solid #d8b36b;
 
     box-shadow:0 10px 25px rgba(0,0,0,.08);
 
 }
 
-/********************
-      PAGE MERCI
-********************/
+#no:hover{
+
+    background:#fffaf3;
+
+}
+
+/*=====================================================
+                SUCCESS
+======================================================*/
 
 #success{
 
@@ -916,171 +687,143 @@ body{
 
     padding:30px;
 
+    background:
+
+    radial-gradient(circle,#fff,#f9f5ef);
+
 }
 
-.thanks{
-
-    width:760px;
-
-    max-width:95%;
+.success-card{
 
     background:white;
 
-    border-radius:25px;
+    width:700px;
 
-    padding:70px;
+    max-width:95%;
+
+    padding:60px;
+
+    border-radius:25px;
 
     text-align:center;
 
-    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,.15);
 
-    box-shadow:0 25px 70px rgba(0,0,0,.15);
+    position:relative;
 
 }
 
-.thanks::before{
+.success-card::before{
 
     content:"";
 
     position:absolute;
 
-    inset:18px;
+    inset:15px;
 
-    border:2px solid #d7b56d;
+    border:2px solid #d8b36b;
 
     border-radius:18px;
 
 }
 
-.thanks h1{
+.success-card h1{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:62px;
+    color:#b9935a;
 
-    color:#b88d4d;
+    font-size:55px;
 
     margin-bottom:25px;
 
 }
 
-.thanks p{
+.success-card p{
 
-    font-size:21px;
+    font-size:20px;
 
-    line-height:2;
-
-    color:#666;
+    line-height:1.8;
 
 }
 
-/********************
-      MOBILE
-********************/
+/*=====================================================
+                ANIMATIONS
+======================================================*/
 
-@media(max-width:900px){
+.fadeIn{
 
-.card{
-
-padding:45px 28px;
+    animation:fadeIn 1.2s ease;
 
 }
 
-.card h1{
+@keyframes fadeIn{
 
-font-size:46px;
+    from{
 
-}
+        opacity:0;
 
-.card h2{
+        transform:translateY(50px);
 
-font-size:24px;
+    }
 
-}
+    to{
 
-.card p{
+        opacity:1;
 
-font-size:18px;
+        transform:translateY(0);
 
-}
-
-.box{
-
-width:100%;
+    }
 
 }
 
-.location{
+.zoomIn{
 
-width:100%;
-
-}
+    animation:zoomIn .8s ease;
 
 }
 
-@media(max-width:600px){
+@keyframes zoomIn{
 
-#home{
+    from{
 
-padding:20px;
+        opacity:0;
 
-}
+        transform:scale(.7);
 
-.intro h3{
+    }
 
-font-size:34px;
+    to{
 
-}
+        opacity:1;
 
-#envelope{
+        transform:scale(1);
 
-width:300px;
-
-height:210px;
+    }
 
 }
 
-.shadow{
+/*=====================================================
+                RESPONSIVE
+======================================================*/
 
-width:220px;
+@media(max-width:768px){
 
-}
+.envelope{
 
-.front{
+width:280px;
 
-height:120px;
-
-}
-
-.flap{
-
-height:120px;
+height:190px;
 
 }
 
-.letter{
+.letter-preview{
 
-left:15px;
-
-right:15px;
-
-height:165px;
+height:155px;
 
 }
 
-#envelope.open .letter{
-
-transform:translateY(-130px);
-
-}
-
-.seal{
-
-width:50px;
-
-height:50px;
-
-top:70px;
+.letter-preview p{
 
 font-size:22px;
 
@@ -1088,47 +831,67 @@ font-size:22px;
 
 .card{
 
-padding:28px 18px;
+padding:35px 25px;
 
 }
 
 .card h1{
 
-font-size:38px;
+font-size:40px;
 
 }
 
-.card h2{
+.card h3{
 
-font-size:22px;
+font-size:20px;
 
 }
 
-.card p{
+.message{
 
-font-size:16px;
+font-size:17px;
 
 line-height:1.8;
 
 }
 
-.details{
+.map{
 
-gap:15px;
+width:100%;
 
 }
 
-.box{
+.buttons{
 
-padding:18px;
+height:180px;
+
+}
+
+.buttons button{
+
+position:relative;
+
+display:block;
+
+margin:15px auto;
+
+left:0 !important;
+
+top:0 !important;
+
+}
+
+#countdown{
+
+gap:10px;
 
 }
 
 #countdown div{
 
-width:70px;
+width:75px;
 
-height:70px;
+height:75px;
 
 }
 
@@ -1138,86 +901,22 @@ font-size:24px;
 
 }
 
-.question{
+.success-card{
 
-font-size:26px;
-
-}
-
-/* Boutons */
-
-.buttons{
-
-height:180px;
+padding:35px;
 
 }
 
-#yes{
-
-left:50%;
-
-top:10px;
-
-transform:translateX(-50%);
-
-}
-
-#yes:hover{
-
-transform:translateX(-50%) scale(1.03);
-
-}
-
-#no{
-
-left:50%;
-
-top:95px;
-
-transform:translateX(-50%);
-
-}
-
-.thanks{
-
-padding:35px 22px;
-
-}
-
-.thanks h1{
+.success-card h1{
 
 font-size:42px;
 
 }
 
-.thanks p{
+.success-card p{
 
 font-size:18px;
 
 }
-
-}
-
-/********************
-      SCROLLBAR
-********************/
-
-::-webkit-scrollbar{
-
-width:10px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:#d7b56d;
-
-border-radius:20px;
-
-}
-
-::-webkit-scrollbar-track{
-
-background:#faf8f4;
 
 }
