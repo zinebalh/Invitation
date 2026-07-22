@@ -293,5 +293,147 @@ function drawConfetti(){
 
 }
 
+/*====================================================
+        PLUIE DE COEURS
+=====================================================*/
 
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.innerHTML = "💖";
+
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = "-40px";
+
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+    heart.style.pointerEvents = "none";
+
+    heart.style.zIndex = "30";
+
+    document.body.appendChild(heart);
+
+    const duration = 4000 + Math.random() * 2500;
+
+    heart.animate([
+
+        {
+            transform: "translateY(0px) rotate(0deg)",
+            opacity: 1
+        },
+
+        {
+            transform: `translateY(${window.innerHeight + 100}px)
+                        rotate(${360 + Math.random() * 360}deg)`,
+            opacity: 0
+        }
+
+    ], {
+
+        duration: duration,
+
+        easing: "linear"
+
+    });
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, duration);
+
+}
+
+/*====================================================
+        BOUTON OUI
+=====================================================*/
+
+yesBtn.addEventListener("click", () => {
+
+    createConfetti();
+
+    drawConfetti();
+
+    for (let i = 0; i < 80; i++) {
+
+        setTimeout(createHeart, i * 80);
+
+    }
+
+    invitation.style.opacity = "0";
+
+    setTimeout(() => {
+
+        invitation.style.display = "none";
+
+        success.style.display = "flex";
+
+        success.classList.add("zoomIn");
+
+    }, 900);
+
+});
+
+/*====================================================
+        EFFET BRILLANT SUR LA CARTE
+=====================================================*/
+
+const card = document.querySelector(".card");
+
+card.addEventListener("mousemove", (e) => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.background = `radial-gradient(circle at ${x}px ${y}px,
+    rgba(255,255,255,.95),
+    rgba(250,247,242,1) 60%)`;
+
+});
+
+card.addEventListener("mouseleave", () => {
+
+    card.style.background = "white";
+
+});
+
+/*====================================================
+        PETIT EFFET SUR LE TITRE
+=====================================================*/
+
+const title = document.querySelector(".card h1");
+
+setInterval(() => {
+
+    title.animate([
+
+        {
+            transform: "scale(1)"
+        },
+
+        {
+            transform: "scale(1.03)"
+        },
+
+        {
+            transform: "scale(1)"
+        }
+
+    ], {
+
+        duration: 2500
+
+    });
+
+}, 3000);
+
+/*====================================================
+        FIN
+=====================================================*/
+
+console.log("Invitation Spa Premium chargée avec succès ❤️");
 
