@@ -1,439 +1,921 @@
-/*====================================================
-        INVITATION SPA PREMIUM
-=====================================================*/
+/*=====================================================
+                RESET
+======================================================*/
 
-/*-------------------------------
-    ELEMENTS
---------------------------------*/
-
-const envelope = document.querySelector(".envelope");
-const intro = document.getElementById("intro");
-const invitation = document.getElementById("invitation");
-const success = document.getElementById("success");
-
-const yesBtn = document.getElementById("yes");
-const noBtn = document.getElementById("no");
-
-const petals = document.getElementById("petals");
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-
-/*-------------------------------
-    CANVAS
---------------------------------*/
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-resizeCanvas();
+html{
+    scroll-behavior:smooth;
+}
 
-window.addEventListener("resize", resizeCanvas);
+body{
 
-/*====================================================
-        OUVERTURE DE L'ENVELOPPE
-=====================================================*/
+    font-family:'Poppins',sans-serif;
 
-envelope.addEventListener("click", () => {
+    background:
+    radial-gradient(circle at top,#ffffff,#f9f5ef);
 
-    envelope.classList.add("open");
+    overflow-x:hidden;
 
-    setTimeout(() => {
+    min-height:100vh;
 
-        intro.style.display = "none";
+    color:#555;
 
-        invitation.style.display = "flex";
+}
 
-        invitation.classList.add("fadeIn");
+/*=====================================================
+            PETALES
+======================================================*/
 
-    }, 1700);
+#petals{
 
-});
+    position:fixed;
 
-/*====================================================
-        COMPTE A REBOURS
-=====================================================*/
+    inset:0;
 
-const targetDate = new Date("August 1, 2026 11:30:00").getTime();
+    pointer-events:none;
 
-function updateCountdown() {
+    z-index:2;
 
-    const now = new Date().getTime();
+}
 
-    const distance = targetDate - now;
+/*=====================================================
+            CONFETTIS
+======================================================*/
 
-    if (distance <= 0) {
+#confetti{
 
-        document.getElementById("days").textContent = "0";
-        document.getElementById("hours").textContent = "0";
-        document.getElementById("minutes").textContent = "0";
-        document.getElementById("seconds").textContent = "0";
+    position:fixed;
 
-        return;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:20;
+
+}
+
+/*=====================================================
+                INTRO
+======================================================*/
+
+#intro{
+
+    width:100%;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    linear-gradient(rgba(255,255,255,.2),
+    rgba(255,255,255,.2)),
+
+    radial-gradient(circle,#fff,#f5efe6);
+
+}
+
+/*=====================================================
+            ENVELOPPE
+======================================================*/
+
+.envelope-container{
+
+    text-align:center;
+
+}
+
+.envelope{
+
+    position:relative;
+
+    width:360px;
+
+    height:230px;
+
+    cursor:pointer;
+
+    perspective:1200px;
+
+}
+
+/* Base */
+
+.envelope::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:#d8c3a5;
+
+    border-radius:6px;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.15);
+
+}
+
+/* Rabat */
+
+.flap{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:120px;
+
+    background:#ccb08c;
+
+    clip-path:polygon(0 0,100% 0,50% 100%);
+
+    transform-origin:top;
+
+    transition:1s;
+
+    z-index:5;
+
+}
+
+/* Lettre */
+
+.letter-preview{
+
+    position:absolute;
+
+    width:92%;
+
+    height:190px;
+
+    background:white;
+
+    left:4%;
+
+    top:20px;
+
+    border-radius:8px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:1s;
+
+    z-index:2;
+
+}
+
+.letter-preview h2{
+
+    font-size:40px;
+
+}
+
+.letter-preview p{
+
+    margin-top:10px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:28px;
+
+}
+
+/* Animation */
+
+.envelope.open .flap{
+
+    transform:rotateX(180deg);
+
+}
+
+.envelope.open .letter-preview{
+
+    transform:translateY(-130px);
+
+}
+
+/*=====================================================
+            TEXTE
+======================================================*/
+
+.open-text{
+
+    margin-top:40px;
+
+    font-size:18px;
+
+    color:#9d7b5b;
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+}
+
+/*=====================================================
+            INVITATION
+======================================================*/
+
+#invitation{
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:70px 20px;
+
+}
+
+/*=====================================================
+            CARTE
+======================================================*/
+
+.card{
+
+    position:relative;
+
+    width:900px;
+
+    max-width:95%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:70px;
+
+    box-shadow:
+
+    0 30px 80px rgba(0,0,0,.15);
+
+    overflow:hidden;
+
+}
+
+/* Bordure dorée */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:18px;
+
+    border:2px solid #d8b36b;
+
+    border-radius:18px;
+
+    pointer-events:none;
+
+}
+/*=====================================================
+            DECORATIONS
+======================================================*/
+
+.leaf{
+
+    position:absolute;
+
+    font-size:55px;
+
+    opacity:.18;
+
+}
+
+.leaf1{
+
+    top:25px;
+
+    left:25px;
+
+    transform:rotate(-25deg);
+
+}
+
+.leaf2{
+
+    bottom:25px;
+
+    right:25px;
+
+    transform:rotate(150deg);
+
+}
+
+.flower{
+
+    position:absolute;
+
+    font-size:28px;
+
+    opacity:.9;
+
+}
+
+.flower1{
+
+    top:60px;
+
+    right:70px;
+
+}
+
+.flower2{
+
+    bottom:60px;
+
+    left:70px;
+
+}
+
+/*=====================================================
+                TITRES
+======================================================*/
+
+.card h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:56px;
+
+    text-align:center;
+
+    color:#8c6b42;
+
+    margin-bottom:10px;
+
+}
+
+.card h3{
+
+    text-align:center;
+
+    font-weight:300;
+
+    color:#9a8c78;
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+.separator{
+
+    width:120px;
+
+    height:2px;
+
+    background:#d6b46d;
+
+    margin:25px auto 40px;
+
+}
+
+/*=====================================================
+                MESSAGE
+======================================================*/
+
+.message{
+
+    font-size:19px;
+
+    line-height:1.9;
+
+    text-align:center;
+
+    color:#555;
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+/*=====================================================
+                INFOS
+======================================================*/
+
+.infos{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin-top:45px;
+
+    flex-wrap:wrap;
+
+}
+
+.info{
+
+    background:#faf7f2;
+
+    border:1px solid #eadfcf;
+
+    border-radius:18px;
+
+    padding:18px 30px;
+
+    font-size:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:.4s;
+
+}
+
+.info:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
+
+/*=====================================================
+            BOUTON MAP
+======================================================*/
+
+.map{
+
+    display:block;
+
+    width:280px;
+
+    margin:40px auto;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:#b9935a;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    transition:.4s;
+
+}
+
+.map:hover{
+
+    background:#8e6f42;
+
+    transform:scale(1.05);
+
+}
+
+/*=====================================================
+            COMPTE A REBOURS
+======================================================*/
+
+#countdown{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin:50px 0;
+
+}
+
+#countdown div{
+
+    width:95px;
+
+    height:95px;
+
+    background:white;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#countdown span{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    color:#b9935a;
+
+}
+
+#countdown small{
+
+    margin-top:6px;
+
+    color:#777;
+
+}
+
+/*=====================================================
+                QUESTION
+======================================================*/
+
+.question{
+
+    margin-top:20px;
+
+    margin-bottom:35px;
+
+    text-align:center;
+
+    font-size:24px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    color:#8c6b42;
+
+}
+
+/*=====================================================
+                BOUTONS
+======================================================*/
+
+.buttons{
+
+    position:relative;
+
+    width:100%;
+
+    height:140px;
+
+}
+
+.buttons button{
+
+    position:absolute;
+
+    width:210px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    font-weight:600;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+#yes{
+
+    left:calc(50% - 240px);
+
+    background:linear-gradient(135deg,#d8b36b,#b9935a);
+
+    color:white;
+
+    box-shadow:0 10px 25px rgba(185,147,90,.35);
+
+}
+
+#yes:hover{
+
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:0 20px 35px rgba(185,147,90,.45);
+
+}
+
+#no{
+
+    left:calc(50% + 20px);
+
+    background:white;
+
+    color:#8c6b42;
+
+    border:2px solid #d8b36b;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+#no:hover{
+
+    background:#fffaf3;
+
+}
+
+/*=====================================================
+                SUCCESS
+======================================================*/
+
+#success{
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:30px;
+
+    background:
+
+    radial-gradient(circle,#fff,#f9f5ef);
+
+}
+
+.success-card{
+
+    background:white;
+
+    width:700px;
+
+    max-width:95%;
+
+    padding:60px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 30px 80px rgba(0,0,0,.15);
+
+    position:relative;
+
+}
+
+.success-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:15px;
+
+    border:2px solid #d8b36b;
+
+    border-radius:18px;
+
+}
+
+.success-card h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    color:#b9935a;
+
+    font-size:55px;
+
+    margin-bottom:25px;
+
+}
+
+.success-card p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+}
+
+/*=====================================================
+                ANIMATIONS
+======================================================*/
+
+.fadeIn{
+
+    animation:fadeIn 1.2s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(50px);
+
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    to{
 
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        opacity:1;
 
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").textContent = days;
-    document.getElementById("hours").textContent = hours;
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds;
-
-}
-
-updateCountdown();
-
-setInterval(updateCountdown,1000);
-
-/*====================================================
-        PETALES
-=====================================================*/
-
-function createPetal(){
-
-    const petal=document.createElement("div");
-
-    petal.innerHTML="🌸";
-
-    petal.style.position="fixed";
-
-    petal.style.left=Math.random()*100+"vw";
-
-    petal.style.top="-40px";
-
-    petal.style.fontSize=(18+Math.random()*18)+"px";
-
-    petal.style.opacity=.8;
-
-    petal.style.pointerEvents="none";
-
-    petal.style.zIndex="5";
-
-    petal.style.transition="transform linear";
-
-    petals.appendChild(petal);
-
-    const duration=7000+Math.random()*4000;
-
-    petal.animate([
-
-        {
-            transform:"translate(0,0) rotate(0deg)"
-        },
-
-        {
-            transform:`translate(${Math.random()*250-125}px,110vh)
-            rotate(${360+Math.random()*360}deg)`
-        }
-
-    ],{
-
-        duration:duration,
-
-        easing:"linear"
-
-    });
-
-    setTimeout(()=>{
-
-        petal.remove();
-
-    },duration);
-
-}
-
-setInterval(createPetal,400);
-/*====================================================
-        BOUTON "NON" QUI S'ÉCHAPPE
-=====================================================*/
-
-function moveNoButton() {
-
-    const container = document.querySelector(".buttons");
-
-    const containerRect = container.getBoundingClientRect();
-
-    const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
-
-    const maxX = container.clientWidth - btnWidth;
-    const maxY = container.clientHeight - btnHeight;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-
-}
-
-function escapeButton(e){
-
-    const rect = noBtn.getBoundingClientRect();
-
-    const distance = Math.sqrt(
-
-        Math.pow(e.clientX - (rect.left + rect.width/2),2)+
-        Math.pow(e.clientY - (rect.top + rect.height/2),2)
-
-    );
-
-    if(distance < 120){
-
-        moveNoButton();
+        transform:translateY(0);
 
     }
 
 }
 
-document.addEventListener("mousemove",escapeButton);
+.zoomIn{
 
-/* Compatible téléphone */
+    animation:zoomIn .8s ease;
 
-noBtn.addEventListener("touchstart",(e)=>{
+}
 
-    e.preventDefault();
+@keyframes zoomIn{
 
-    moveNoButton();
+    from{
 
-});
+        opacity:0;
 
-/*====================================================
-        CONFETTIS
-=====================================================*/
+        transform:scale(.7);
 
-let confettis=[];
+    }
 
-function createConfetti(){
+    to{
 
-    confettis=[];
+        opacity:1;
 
-    for(let i=0;i<220;i++){
-
-        confettis.push({
-
-            x:Math.random()*canvas.width,
-
-            y:-20-Math.random()*canvas.height,
-
-            size:5+Math.random()*10,
-
-            speed:2+Math.random()*6,
-
-            angle:Math.random()*360,
-
-            rotate:Math.random()*10,
-
-            color:[
-                "#d8b36b",
-                "#ff6fa5",
-                "#ffffff",
-                "#f4d35e",
-                "#9ad3bc"
-            ][Math.floor(Math.random()*5)]
-
-        });
+        transform:scale(1);
 
     }
 
 }
 
-function drawConfetti(){
+/*=====================================================
+                RESPONSIVE
+======================================================*/
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+@media(max-width:768px){
 
-    confettis.forEach(c=>{
+.envelope{
 
-        ctx.save();
+width:280px;
 
-        ctx.translate(c.x,c.y);
-
-        ctx.rotate(c.angle);
-
-        ctx.fillStyle=c.color;
-
-        ctx.fillRect(
-
-            -c.size/2,
-
-            -c.size/2,
-
-            c.size,
-
-            c.size
-
-        );
-
-        ctx.restore();
-
-        c.y+=c.speed;
-
-        c.angle+=0.05;
-
-    });
-
-    confettis=confettis.filter(c=>c.y<canvas.height+30);
-
-    if(confettis.length){
-
-        requestAnimationFrame(drawConfetti);
-
-    }else{
-
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    }
+height:190px;
 
 }
 
-/*====================================================
-        PLUIE DE COEURS
-=====================================================*/
+.letter-preview{
 
-function createHeart() {
-
-    const heart = document.createElement("div");
-
-    heart.innerHTML = "💖";
-
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = "-40px";
-
-    heart.style.fontSize = (20 + Math.random() * 20) + "px";
-
-    heart.style.pointerEvents = "none";
-
-    heart.style.zIndex = "30";
-
-    document.body.appendChild(heart);
-
-    const duration = 4000 + Math.random() * 2500;
-
-    heart.animate([
-
-        {
-            transform: "translateY(0px) rotate(0deg)",
-            opacity: 1
-        },
-
-        {
-            transform: `translateY(${window.innerHeight + 100}px)
-                        rotate(${360 + Math.random() * 360}deg)`,
-            opacity: 0
-        }
-
-    ], {
-
-        duration: duration,
-
-        easing: "linear"
-
-    });
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, duration);
+height:155px;
 
 }
 
-/*====================================================
-        BOUTON OUI
-=====================================================*/
+.letter-preview p{
 
-yesBtn.addEventListener("click", () => {
+font-size:22px;
 
-    createConfetti();
+}
 
-    drawConfetti();
+.card{
 
-    for (let i = 0; i < 80; i++) {
+padding:35px 25px;
 
-        setTimeout(createHeart, i * 80);
+}
 
-    }
+.card h1{
 
-    invitation.style.opacity = "0";
+font-size:40px;
 
-    setTimeout(() => {
+}
 
-        invitation.style.display = "none";
+.card h3{
 
-        success.style.display = "flex";
+font-size:20px;
 
-        success.classList.add("zoomIn");
+}
 
-    }, 900);
+.message{
 
-});
+font-size:17px;
 
-/*====================================================
-        EFFET BRILLANT SUR LA CARTE
-=====================================================*/
+line-height:1.8;
 
-const card = document.querySelector(".card");
+}
 
-card.addEventListener("mousemove", (e) => {
+.map{
 
-    const rect = card.getBoundingClientRect();
+width:100%;
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+}
 
-    card.style.background = `radial-gradient(circle at ${x}px ${y}px,
-    rgba(255,255,255,.95),
-    rgba(250,247,242,1) 60%)`;
+.buttons{
 
-});
+height:180px;
 
-card.addEventListener("mouseleave", () => {
+}
 
-    card.style.background = "white";
+.buttons button{
 
-});
+position:relative;
 
-/*====================================================
-        PETIT EFFET SUR LE TITRE
-=====================================================*/
+display:block;
 
-const title = document.querySelector(".card h1");
+margin:15px auto;
 
-setInterval(() => {
+left:0 !important;
 
-    title.animate([
+top:0 !important;
 
-        {
-            transform: "scale(1)"
-        },
+}
 
-        {
-            transform: "scale(1.03)"
-        },
+#countdown{
 
-        {
-            transform: "scale(1)"
-        }
+gap:10px;
 
-    ], {
+}
 
-        duration: 2500
+#countdown div{
 
-    });
+width:75px;
 
-}, 3000);
+height:75px;
 
-/*====================================================
-        FIN
-=====================================================*/
+}
 
-console.log("Invitation Spa Premium chargée avec succès ❤️");
+#countdown span{
 
+font-size:24px;
+
+}
+
+.success-card{
+
+padding:35px;
+
+}
+
+.success-card h1{
+
+font-size:42px;
+
+}
+
+.success-card p{
+
+font-size:18px;
+
+}
+
+}
+
+            
