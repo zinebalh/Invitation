@@ -150,15 +150,14 @@ function createPetal(){
 }
 
 setInterval(createPetal,400);
+
 /*====================================================
-        BOUTON "NON" QUI S'ÉCHAPPE
+        BOUTON "NON" QUI S'ÉCHAPPE (PC & MOBILE)
 =====================================================*/
 
 function moveNoButton() {
 
     const container = document.querySelector(".buttons");
-
-    const containerRect = container.getBoundingClientRect();
 
     const btnWidth = noBtn.offsetWidth;
     const btnHeight = noBtn.offsetHeight;
@@ -174,35 +173,43 @@ function moveNoButton() {
 
 }
 
-function escapeButton(e){
+// Détection de la proximité de la souris ou du doigt
+function checkDistanceAndMove(clientX, clientY) {
 
     const rect = noBtn.getBoundingClientRect();
 
     const distance = Math.sqrt(
-
-        Math.pow(e.clientX - (rect.left + rect.width/2),2)+
-        Math.pow(e.clientY - (rect.top + rect.height/2),2)
-
+        Math.pow(clientX - (rect.left + rect.width / 2), 2) +
+        Math.pow(clientY - (rect.top + rect.height / 2), 2)
     );
 
-    if(distance < 120){
-
+    if (distance < 110) {
         moveNoButton();
-
     }
 
 }
 
-document.addEventListener("mousemove",escapeButton);
+// Événement Souris (Ordinateur)
+document.addEventListener("mousemove", (e) => {
+    checkDistanceAndMove(e.clientX, e.clientY);
+});
 
-/* Compatible téléphone */
+// Événement Tactile (Mouvement du doigt sur téléphone)
+document.addEventListener("touchmove", (e) => {
+    if (e.touches.length > 0) {
+        checkDistanceAndMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
+}, { passive: true });
 
-noBtn.addEventListener("touchstart",(e)=>{
-
+// Tap direct sur téléphone ou clic accidentel
+noBtn.addEventListener("touchstart", (e) => {
     e.preventDefault();
-
     moveNoButton();
+});
 
+noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    moveNoButton();
 });
 
 /*====================================================
@@ -292,7 +299,6 @@ function drawConfetti(){
     }
 
 }
-
 
 /*====================================================
         PLUIE DE COEURS
@@ -431,9 +437,5 @@ setInterval(() => {
     });
 
 }, 3000);
-
-/*====================================================
-        FIN
-=====================================================*/
 
 console.log("Invitation Spa Premium chargée avec succès ❤️");
