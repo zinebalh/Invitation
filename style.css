@@ -24,18 +24,11 @@ body{
             PETALES & CONFETTIS
 ======================================================*/
 
-#petals{
+#petals, #confetti {
     position:fixed;
     inset:0;
     pointer-events:none;
     z-index:2;
-}
-
-#confetti{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:20;
 }
 
 /*=====================================================
@@ -48,9 +41,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:
-    linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)),
-    radial-gradient(circle,#fff,#f5efe6);
+    background: radial-gradient(circle,#fff,#f5efe6);
 }
 
 .envelope-container{
@@ -63,9 +54,9 @@ body{
     height:230px;
     cursor:pointer;
     perspective:1200px;
+    margin: 0 auto;
 }
 
-/* Arrière-plan intérieur de l'enveloppe */
 .envelope::before{
     content:"";
     position:absolute;
@@ -76,18 +67,24 @@ body{
     z-index: 1;
 }
 
-/* Cœur placé au-dessus de l'enveloppe */
-.envelope-heart{
-    position:absolute;
-    top:-25px; /* Ajustez pour faire dépasser le cœur vers le haut */
-    left:50%;
-    transform:translateX(-50%);
-    font-size:32px;
-    z-index:10; /* Toujours visible au-dessus */
-    pointer-events:none;
+/* Cœur placé PILE AU MILIEU de l'enveloppe */
+.envelope-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    z-index: 10;
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-/* Lettre / Carte (Cachée dans l'enveloppe au départ) */
+/* Cache doucement le cœur au clic d'ouverture */
+.envelope.open .envelope-heart {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Lettre / Carte */
 .letter-preview{
     position:absolute;
     width:90%;
@@ -105,12 +102,12 @@ body{
 }
 
 .letter-preview p{
-    margin-top:10px;
     font-family:'Cormorant Garamond',serif;
-    font-size:28px;
+    font-size:24px;
+    color:#8c6b42;
 }
 
-/* Pochette Avant (Remontée pour bien cacher le blanc) */
+/* Pochette Avant (Recouvre bien le bas) */
 .pocket{
     position:absolute;
     inset:0;
@@ -134,7 +131,7 @@ body{
     z-index: 5;
 }
 
-/* Animation lors de l'ouverture */
+/* Animations à l'ouverture */
 .envelope.open .flap{
     transform:rotateX(180deg);
     z-index: 1;
@@ -145,10 +142,6 @@ body{
     z-index: 6;
 }
 
-/*=====================================================
-            TEXTE INDICATEUR
-======================================================*/
-
 .open-text{
     margin-top:40px;
     font-size:18px;
@@ -157,9 +150,7 @@ body{
 }
 
 @keyframes pulse{
-    50%{
-        transform:scale(1.08);
-    }
+    50%{ transform:scale(1.08); }
 }
 
 /*=====================================================
@@ -185,7 +176,6 @@ body{
     overflow:hidden;
 }
 
-/* Bordure dorée */
 .card::before{
     content:"";
     position:absolute;
@@ -195,27 +185,14 @@ body{
     pointer-events:none;
 }
 
-/*=====================================================
-            DECORATIONS
-======================================================*/
-
 .leaf{
     position:absolute;
     font-size:55px;
     opacity:.18;
 }
 
-.leaf1{
-    top:25px;
-    left:25px;
-    transform:rotate(-25deg);
-}
-
-.leaf2{
-    bottom:25px;
-    right:25px;
-    transform:rotate(150deg);
-}
+.leaf1{ top:25px; left:25px; transform:rotate(-25deg); }
+.leaf2{ bottom:25px; right:25px; transform:rotate(150deg); }
 
 .flower{
     position:absolute;
@@ -223,19 +200,8 @@ body{
     opacity:.9;
 }
 
-.flower1{
-    top:60px;
-    right:70px;
-}
-
-.flower2{
-    bottom:60px;
-    left:70px;
-}
-
-/*=====================================================
-                TITRES & CONTENU
-======================================================*/
+.flower1{ top:60px; right:70px; }
+.flower2{ bottom:60px; left:70px; }
 
 .card h1{
     font-family:'Cormorant Garamond',serif;
@@ -269,10 +235,6 @@ body{
     margin:auto;
 }
 
-/*=====================================================
-                INFOS & BOUTON MAP
-======================================================*/
-
 .infos{
     display:flex;
     justify-content:center;
@@ -290,12 +252,6 @@ body{
     display:flex;
     align-items:center;
     gap:12px;
-    transition:.4s;
-}
-
-.info:hover{
-    transform:translateY(-6px);
-    box-shadow:0 12px 25px rgba(0,0,0,.08);
 }
 
 .map{
@@ -316,10 +272,6 @@ body{
     background:#8e6f42;
     transform:scale(1.05);
 }
-
-/*=====================================================
-            COMPTE A REBOURS
-======================================================*/
 
 #countdown{
     display:flex;
@@ -352,10 +304,6 @@ body{
     color:#777;
 }
 
-/*=====================================================
-                QUESTION & BOUTONS
-======================================================*/
-
 .question{
     margin-top:20px;
     margin-bottom:35px;
@@ -381,19 +329,12 @@ body{
     cursor:pointer;
     transition:.35s;
     font-weight:600;
-    font-family:'Poppins',sans-serif;
 }
 
 #yes{
     left:calc(50% - 240px);
     background:linear-gradient(135deg,#d8b36b,#b9935a);
     color:white;
-    box-shadow:0 10px 25px rgba(185,147,90,.35);
-}
-
-#yes:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:0 20px 35px rgba(185,147,90,.45);
 }
 
 #no{
@@ -401,16 +342,7 @@ body{
     background:white;
     color:#8c6b42;
     border:2px solid #d8b36b;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
-
-#no:hover{
-    background:#fffaf3;
-}
-
-/*=====================================================
-                SUCCESS
-======================================================*/
 
 #success{
     display:none;
@@ -418,7 +350,6 @@ body{
     align-items:center;
     min-height:100vh;
     padding:30px;
-    background: radial-gradient(circle,#fff,#f9f5ef);
 }
 
 .success-card{
@@ -432,14 +363,6 @@ body{
     position:relative;
 }
 
-.success-card::before{
-    content:"";
-    position:absolute;
-    inset:15px;
-    border:2px solid #d8b36b;
-    border-radius:18px;
-}
-
 .success-card h1{
     font-family:'Cormorant Garamond',serif;
     color:#b9935a;
@@ -447,43 +370,16 @@ body{
     margin-bottom:25px;
 }
 
-.success-card p{
-    font-size:20px;
-    line-height:1.8;
-}
-
-/*=====================================================
-                ANIMATIONS
-======================================================*/
-
-.fadeIn{
-    animation:fadeIn 1.2s ease;
-}
-
+.fadeIn{ animation:fadeIn 1.2s ease; }
 @keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    from{ opacity:0; transform:translateY(50px); }
+    to{ opacity:1; transform:translateY(0); }
 }
 
-.zoomIn{
-    animation:zoomIn .8s ease;
-}
-
+.zoomIn{ animation:zoomIn .8s ease; }
 @keyframes zoomIn{
-    from{
-        opacity:0;
-        transform:scale(.7);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+    from{ opacity:0; transform:scale(.7); }
+    to{ opacity:1; transform:scale(1); }
 }
 
 /*=====================================================
@@ -498,8 +394,7 @@ body{
     }
 
     .envelope-heart {
-        top: -20px;
-        font-size: 26px;
+        font-size: 32px;
     }
 
     .flap {
@@ -512,60 +407,27 @@ body{
         clip-path: polygon(0 12%, 50% 42%, 100% 12%, 100% 100%, 0 100%);
     }
 
-    .letter-preview {
-        height: 150px;
-        top: 25px;
-    }
-
-    .letter-preview p {
-        font-size: 22px;
-    }
-
-    .card {
-        padding: 40px 18px;
-    }
-
-    .card h1 {
-        font-size: 34px;
-    }
-
-    .card h3 {
-        font-size: 18px;
-    }
-
-    .message {
-        font-size: 15px;
-        line-height: 1.7;
-    }
+    .card { padding: 40px 18px; }
+    .card h1 { font-size: 34px; }
+    .card h3 { font-size: 18px; }
+    .message { font-size: 15px; }
 
     #countdown {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 6px;
-        margin: 30px 0;
     }
 
     #countdown div {
         width: 100%;
         height: 65px;
-        border-radius: 12px;
-    }
-
-    #countdown span {
-        font-size: 18px;
-    }
-
-    #countdown small {
-        font-size: 10px;
     }
 
     .buttons {
-        position: relative;
         height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         gap: 15px;
     }
 
@@ -575,19 +437,5 @@ body{
         top: auto !important;
         width: 100% !important;
         max-width: 260px;
-        height: 50px;
-        font-size: 16px;
-    }
-
-    .success-card {
-        padding: 30px 20px;
-    }
-
-    .success-card h1 {
-        font-size: 36px;
-    }
-
-    .success-card p {
-        font-size: 16px;
     }
 }
