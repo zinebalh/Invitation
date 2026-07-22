@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitation Spéciale</title>
     
-    <!-- Polons Google Fonts -->
+    <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
         <div class="envelope-container">
             <div class="envelope" id="envelope">
                 
-                <!-- Cœur centré au milieu de l'enveloppe -->
+                <!-- Cœur au niveau du sceau (pointe du rabat) -->
                 <div class="envelope-heart">❤️</div>
 
                 <!-- Composants de l'enveloppe -->
@@ -109,7 +109,7 @@
         </div>
     </section>
 
-    <!-- Script JavaScript pour l'interactivité -->
+    <!-- Script JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const envelope = document.getElementById("envelope");
@@ -135,7 +135,7 @@
                 success.style.display = "flex";
             });
 
-            // Bouton Non fuyant (Optionnel)
+            // Bouton Non fuyant UNIQUEMENT sur Ordinateur (désactivé sur écran <= 768px)
             btnNo.addEventListener("mouseover", function () {
                 if (window.innerWidth > 768) {
                     const x = Math.random() * (window.innerWidth - 150);
