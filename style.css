@@ -76,6 +76,17 @@ body{
     z-index: 1;
 }
 
+/* Cœur placé au-dessus de l'enveloppe */
+.envelope-heart{
+    position:absolute;
+    top:-25px; /* Ajustez pour faire dépasser le cœur vers le haut */
+    left:50%;
+    transform:translateX(-50%);
+    font-size:32px;
+    z-index:10; /* Toujours visible au-dessus */
+    pointer-events:none;
+}
+
 /* Lettre / Carte (Cachée dans l'enveloppe au départ) */
 .letter-preview{
     position:absolute;
@@ -93,22 +104,18 @@ body{
     z-index: 2;
 }
 
-.letter-preview h2{
-    font-size:40px;
-}
-
 .letter-preview p{
     margin-top:10px;
     font-family:'Cormorant Garamond',serif;
     font-size:28px;
 }
 
-/* Pochette Avant (Forme découpée qui recouvre le bas de la carte) */
+/* Pochette Avant (Remontée pour bien cacher le blanc) */
 .pocket{
     position:absolute;
     inset:0;
     background:#d8c3a5;
-    clip-path: polygon(0 40%, 50% 70%, 100% 40%, 100% 100%, 0 100%);
+    clip-path: polygon(0 15%, 50% 48%, 100% 15%, 100% 100%, 0 100%);
     border-radius: 6px;
     z-index: 4;
 }
@@ -480,15 +487,19 @@ body{
 }
 
 /*=====================================================
-                RESPONSIVE MOBILE (CORRECTIFS)
+                RESPONSIVE MOBILE
 ======================================================*/
 
 @media (max-width: 768px) {
 
-    /* Correction Enveloppe */
     .envelope {
         width: 300px;
         height: 200px;
+    }
+
+    .envelope-heart {
+        top: -20px;
+        font-size: 26px;
     }
 
     .flap {
@@ -497,8 +508,8 @@ body{
     }
 
     .pocket {
-        height: 130px;
-        clip-path: polygon(0 35%, 50% 60%, 100% 35%, 100% 100%, 0 100%);
+        height: 100%;
+        clip-path: polygon(0 12%, 50% 42%, 100% 12%, 100% 100%, 0 100%);
     }
 
     .letter-preview {
@@ -510,7 +521,6 @@ body{
         font-size: 22px;
     }
 
-    /* Correction Carte & Marges */
     .card {
         padding: 40px 18px;
     }
@@ -528,7 +538,6 @@ body{
         line-height: 1.7;
     }
 
-    /* Correction Compte à Rebours (Alignement 4 colonnes) */
     #countdown {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -550,7 +559,6 @@ body{
         font-size: 10px;
     }
 
-    /* Correction Boutons (S'affichent correctement sans couper) */
     .buttons {
         position: relative;
         height: auto;
