@@ -67,21 +67,22 @@ body{
     z-index: 1;
 }
 
-/* Cœur placé PILE AU MILIEU de l'enveloppe */
+/* Cœur placé au niveau de la pointe du rabat (Sceau) */
 .envelope-heart {
     position: absolute;
-    top: 50%;
+    top: 130px;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 38px;
+    font-size: 32px;
     z-index: 10;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Cache doucement le cœur au clic d'ouverture */
+/* Disparition progressive du cœur lors de l'ouverture */
 .envelope.open .envelope-heart {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(0.3);
+    pointer-events: none;
 }
 
 /* Lettre / Carte */
@@ -107,7 +108,7 @@ body{
     color:#8c6b42;
 }
 
-/* Pochette Avant (Recouvre bien le bas) */
+/* Pochette Avant */
 .pocket{
     position:absolute;
     inset:0;
@@ -394,7 +395,8 @@ body{
     }
 
     .envelope-heart {
-        font-size: 32px;
+        top: 100px;
+        font-size: 26px;
     }
 
     .flap {
@@ -431,6 +433,7 @@ body{
         gap: 15px;
     }
 
+    /* Le bouton non reste fixe et centré sur smartphone */
     .buttons button {
         position: relative !important;
         left: auto !important;
