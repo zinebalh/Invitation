@@ -24,8 +24,8 @@
         <div class="envelope-container">
             <div class="envelope" id="envelope">
                 
-                <!-- Cœur au-dessus de l'enveloppe -->
-                <div class="envelope-heart">💌</div>
+                <!-- Cœur centré au milieu de l'enveloppe -->
+                <div class="envelope-heart">❤️</div>
 
                 <!-- Composants de l'enveloppe -->
                 <div class="flap"></div>
@@ -58,7 +58,7 @@
                 Prends le temps de te détendre et de profiter de ce moment unique.
             </p>
 
-            <!-- Infos (Date, Heure, Lieu) -->
+            <!-- Infos (Date, Heure) -->
             <div class="infos">
                 <div class="info">
                     <span>📅</span> <strong>1er Août 2026</strong>
@@ -101,7 +101,7 @@
         </div>
     </section>
 
-    <!-- 3. SECTION SUCCÈS (Message après clic sur OUI) -->
+    <!-- 3. SECTION SUCCÈS -->
     <section id="success">
         <div class="success-card zoomIn">
             <h1>C'est génial ! 🎉</h1>
@@ -109,7 +109,43 @@
         </div>
     </section>
 
-    <!-- Fichier JS (Si tu en utilises un) -->
-    <script src="script.js"></script>
+    <!-- Script JavaScript pour l'interactivité -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const envelope = document.getElementById("envelope");
+            const intro = document.getElementById("intro");
+            const invitation = document.getElementById("invitation");
+            const success = document.getElementById("success");
+            const btnYes = document.getElementById("yes");
+            const btnNo = document.getElementById("no");
+
+            // Clic sur l'enveloppe pour ouvrir
+            envelope.addEventListener("click", function () {
+                envelope.classList.add("open");
+
+                setTimeout(function () {
+                    intro.style.display = "none";
+                    invitation.style.display = "flex";
+                }, 1200);
+            });
+
+            // Clic sur Oui
+            btnYes.addEventListener("click", function () {
+                invitation.style.display = "none";
+                success.style.display = "flex";
+            });
+
+            // Bouton Non fuyant (Optionnel)
+            btnNo.addEventListener("mouseover", function () {
+                if (window.innerWidth > 768) {
+                    const x = Math.random() * (window.innerWidth - 150);
+                    const y = Math.random() * (window.innerHeight - 60);
+                    btnNo.style.position = "fixed";
+                    btnNo.style.left = x + "px";
+                    btnNo.style.top = y + "px";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
