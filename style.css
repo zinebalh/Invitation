@@ -13,535 +13,301 @@ html{
 }
 
 body{
-
     font-family:'Poppins',sans-serif;
-
-    background:
-    radial-gradient(circle at top,#ffffff,#f9f5ef);
-
+    background: radial-gradient(circle at top,#ffffff,#f9f5ef);
     overflow-x:hidden;
-
     min-height:100vh;
-
     color:#555;
-
 }
 
 /*=====================================================
-            PETALES
+            PETALES & CONFETTIS
 ======================================================*/
 
 #petals{
-
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
-
     z-index:2;
-
 }
-
-/*=====================================================
-            CONFETTIS
-======================================================*/
 
 #confetti{
-
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
-
     z-index:20;
-
 }
 
 /*=====================================================
-                INTRO
+                INTRO & ENVELOPPE
 ======================================================*/
 
 #intro{
-
     width:100%;
     height:100vh;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     background:
-
-    linear-gradient(rgba(255,255,255,.2),
-    rgba(255,255,255,.2)),
-
+    linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.2)),
     radial-gradient(circle,#fff,#f5efe6);
-
 }
 
-/*=====================================================
-            ENVELOPPE
-======================================================*/
-
 .envelope-container{
-
     text-align:center;
-
 }
 
 .envelope{
-
     position:relative;
-
     width:360px;
-
     height:230px;
-
     cursor:pointer;
-
     perspective:1200px;
-
 }
 
-/* Base / Arrière-plan de l'enveloppe */
-
+/* Arrière-plan intérieur de l'enveloppe */
 .envelope::before{
-
     content:"";
-
     position:absolute;
-
     inset:0;
-
-    background:#d8c3a5;
-
+    background:#cbb08c;
     border-radius:6px;
-
-    box-shadow:
-
-    0 20px 50px rgba(0,0,0,.15);
-
+    box-shadow: 0 20px 50px rgba(0,0,0,.15);
     z-index: 1;
-
 }
 
-/* Lettre / Carte */
-
+/* Lettre / Carte (Cachée dans l'enveloppe au départ) */
 .letter-preview{
-
     position:absolute;
-
-    width:92%;
-
-    height:190px;
-
+    width:90%;
+    height:180px;
     background:white;
-
-    left:4%;
-
-    top:20px;
-
+    left:5%;
+    top:35px;
     border-radius:8px;
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
-    transition: transform 0.8s ease-in-out 0.4s;
-
+    transition: transform 0.8s ease-in-out 0.3s;
     z-index: 2;
-
 }
 
 .letter-preview h2{
-
     font-size:40px;
-
 }
 
 .letter-preview p{
-
     margin-top:10px;
-
     font-family:'Cormorant Garamond',serif;
-
     font-size:28px;
-
 }
 
-/* Pochette Avant (Cache le bas de la carte) */
-
+/* Pochette Avant (Forme en V qui recouvre le bas de la carte) */
 .pocket{
-
     position:absolute;
-
-    bottom:0;
-
-    left:0;
-
-    width:100%;
-
-    height:140px;
-
-    background:#e2cfb4;
-
-    clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 100%, 0 100%);
-
-    border-radius: 0 0 6px 6px;
-
+    inset:0;
+    background:#d8c3a5;
+    clip-path: polygon(0 40%, 50% 70%, 100% 40%, 100% 100%, 0 100%);
+    border-radius: 6px;
     z-index: 4;
-
 }
 
-/* Rabat Supérieur (Cache le haut de la carte) */
-
+/* Rabat Supérieur */
 .flap{
-
     position:absolute;
-
     top:0;
-
     left:0;
-
     width:100%;
-
-    height:120px;
-
+    height:130px;
     background:#ccb08c;
-
-    clip-path:polygon(0 0,100% 0,50% 100%);
-
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
     transform-origin:top;
-
     transition: transform 0.6s ease;
-
     z-index: 5;
-
 }
 
 /* Animation lors de l'ouverture */
-
 .envelope.open .flap{
-
     transform:rotateX(180deg);
-
     z-index: 1;
-
 }
 
 .envelope.open .letter-preview{
-
-    transform:translateY(-130px);
-
+    transform:translateY(-140px);
     z-index: 6;
-
 }
 
 /*=====================================================
-            TEXTE
+            TEXTE APPARTION
 ======================================================*/
 
 .open-text{
-
     margin-top:40px;
-
     font-size:18px;
-
     color:#9d7b5b;
-
     animation:pulse 2s infinite;
-
 }
 
 @keyframes pulse{
-
-50%{
-
-transform:scale(1.08);
-
-}
-
+    50%{
+        transform:scale(1.08);
+    }
 }
 
 /*=====================================================
-            INVITATION
+            INVITATION & CARTE
 ======================================================*/
 
 #invitation{
-
     display:none;
-
     justify-content:center;
-
     align-items:center;
-
     min-height:100vh;
-
     padding:70px 20px;
-
 }
 
-/*=====================================================
-            CARTE
-======================================================*/
-
 .card{
-
     position:relative;
-
     width:900px;
-
     max-width:95%;
-
     background:white;
-
     border-radius:25px;
-
     padding:70px;
-
-    box-shadow:
-
-    0 30px 80px rgba(0,0,0,.15);
-
+    box-shadow: 0 30px 80px rgba(0,0,0,.15);
     overflow:hidden;
-
 }
 
 /* Bordure dorée */
-
 .card::before{
-
     content:"";
-
     position:absolute;
-
     inset:18px;
-
     border:2px solid #d8b36b;
-
     border-radius:18px;
-
     pointer-events:none;
-
 }
-
 
 /*=====================================================
             DECORATIONS
 ======================================================*/
 
 .leaf{
-
     position:absolute;
-
     font-size:55px;
-
     opacity:.18;
-
 }
 
 .leaf1{
-
     top:25px;
-
     left:25px;
-
     transform:rotate(-25deg);
-
 }
 
 .leaf2{
-
     bottom:25px;
-
     right:25px;
-
     transform:rotate(150deg);
-
 }
 
 .flower{
-
     position:absolute;
-
     font-size:28px;
-
     opacity:.9;
-
 }
 
 .flower1{
-
     top:60px;
-
     right:70px;
-
 }
 
 .flower2{
-
     bottom:60px;
-
     left:70px;
-
 }
 
 /*=====================================================
-                TITRES
+                TITRES & CONTENU
 ======================================================*/
 
 .card h1{
-
     font-family:'Cormorant Garamond',serif;
-
     font-size:56px;
-
     text-align:center;
-
     color:#8c6b42;
-
     margin-bottom:10px;
-
 }
 
 .card h3{
-
     text-align:center;
-
     font-weight:300;
-
     color:#9a8c78;
-
     font-size:24px;
-
     margin-bottom:25px;
-
 }
 
 .separator{
-
     width:120px;
-
     height:2px;
-
     background:#d6b46d;
-
     margin:25px auto 40px;
-
 }
-
-/*=====================================================
-                MESSAGE
-======================================================*/
 
 .message{
-
     font-size:19px;
-
     line-height:1.9;
-
     text-align:center;
-
     color:#555;
-
     max-width:700px;
-
     margin:auto;
-
 }
 
 /*=====================================================
-                INFOS
+                INFOS & BOUTON MAP
 ======================================================*/
 
 .infos{
-
     display:flex;
-
     justify-content:center;
-
     gap:25px;
-
     margin-top:45px;
-
     flex-wrap:wrap;
-
 }
 
 .info{
-
     background:#faf7f2;
-
     border:1px solid #eadfcf;
-
     border-radius:18px;
-
     padding:18px 30px;
-
     font-size:18px;
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     transition:.4s;
-
 }
 
 .info:hover{
-
     transform:translateY(-6px);
-
     box-shadow:0 12px 25px rgba(0,0,0,.08);
-
 }
 
-/*=====================================================
-            BOUTON MAP
-======================================================*/
-
 .map{
-
     display:block;
-
     width:280px;
-
     margin:40px auto;
-
     text-align:center;
-
     text-decoration:none;
-
     background:#b9935a;
-
     color:white;
-
     padding:15px;
-
     border-radius:50px;
-
     font-size:18px;
-
     transition:.4s;
-
 }
 
 .map:hover{
-
     background:#8e6f42;
-
     transform:scale(1.05);
-
 }
 
 /*=====================================================
@@ -549,156 +315,90 @@ transform:scale(1.08);
 ======================================================*/
 
 #countdown{
-
     display:flex;
-
     justify-content:center;
-
     gap:20px;
-
     flex-wrap:wrap;
-
     margin:50px 0;
-
 }
 
 #countdown div{
-
     width:95px;
-
     height:95px;
-
     background:white;
-
     border-radius:18px;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
-
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
 }
 
 #countdown span{
-
     font-size:32px;
-
     font-weight:bold;
-
     color:#b9935a;
-
 }
 
 #countdown small{
-
     margin-top:6px;
-
     color:#777;
-
 }
 
-
 /*=====================================================
-                QUESTION
+                QUESTION & BOUTONS
 ======================================================*/
 
 .question{
-
     margin-top:20px;
-
     margin-bottom:35px;
-
     text-align:center;
-
     font-size:24px;
-
     font-family:'Cormorant Garamond',serif;
-
     color:#8c6b42;
-
 }
 
-/*=====================================================
-                BOUTONS
-======================================================*/
-
 .buttons{
-
     position:relative;
-
     width:100%;
-
     height:140px;
-
 }
 
 .buttons button{
-
     position:absolute;
-
     width:210px;
-
     height:60px;
-
     border:none;
-
     border-radius:50px;
-
     font-size:18px;
-
     cursor:pointer;
-
     transition:.35s;
-
     font-weight:600;
-
     font-family:'Poppins',sans-serif;
-
 }
 
 #yes{
-
     left:calc(50% - 240px);
-
     background:linear-gradient(135deg,#d8b36b,#b9935a);
-
     color:white;
-
     box-shadow:0 10px 25px rgba(185,147,90,.35);
-
 }
 
 #yes:hover{
-
     transform:translateY(-5px) scale(1.05);
-
     box-shadow:0 20px 35px rgba(185,147,90,.45);
-
 }
 
 #no{
-
     left:calc(50% + 20px);
-
     background:white;
-
     color:#8c6b42;
-
     border:2px solid #d8b36b;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
-
 }
 
 #no:hover{
-
     background:#fffaf3;
-
 }
 
 /*=====================================================
@@ -706,75 +406,43 @@ transform:scale(1.08);
 ======================================================*/
 
 #success{
-
     display:none;
-
     justify-content:center;
-
     align-items:center;
-
     min-height:100vh;
-
     padding:30px;
-
-    background:
-
-    radial-gradient(circle,#fff,#f9f5ef);
-
+    background: radial-gradient(circle,#fff,#f9f5ef);
 }
 
 .success-card{
-
     background:white;
-
     width:700px;
-
     max-width:95%;
-
     padding:60px;
-
     border-radius:25px;
-
     text-align:center;
-
     box-shadow:0 30px 80px rgba(0,0,0,.15);
-
     position:relative;
-
 }
 
 .success-card::before{
-
     content:"";
-
     position:absolute;
-
     inset:15px;
-
     border:2px solid #d8b36b;
-
     border-radius:18px;
-
 }
 
 .success-card h1{
-
     font-family:'Cormorant Garamond',serif;
-
     color:#b9935a;
-
     font-size:55px;
-
     margin-bottom:25px;
-
 }
 
 .success-card p{
-
     font-size:20px;
-
     line-height:1.8;
-
 }
 
 /*=====================================================
@@ -782,171 +450,101 @@ transform:scale(1.08);
 ======================================================*/
 
 .fadeIn{
-
     animation:fadeIn 1.2s ease;
-
 }
 
 @keyframes fadeIn{
-
     from{
-
         opacity:0;
-
         transform:translateY(50px);
-
     }
-
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 .zoomIn{
-
     animation:zoomIn .8s ease;
-
 }
 
 @keyframes zoomIn{
-
     from{
-
         opacity:0;
-
         transform:scale(.7);
-
     }
-
     to{
-
         opacity:1;
-
         transform:scale(1);
-
     }
-
 }
 
 /*=====================================================
-                RESPONSIVE
+                RESPONSIVE MOBILE
 ======================================================*/
 
 @media(max-width:768px){
+    .envelope{
+        width:280px;
+        height:190px;
+    }
 
-.envelope{
+    .letter-preview{
+        height:145px;
+        top:25px;
+    }
 
-width:280px;
+    .letter-preview p{
+        font-size:20px;
+    }
 
-height:190px;
+    .card{
+        padding:35px 25px;
+    }
 
-}
+    .card h1{
+        font-size:38px;
+    }
 
-.letter-preview{
+    .card h3{
+        font-size:18px;
+    }
 
-height:155px;
+    .message{
+        font-size:16px;
+        line-height:1.7;
+    }
 
-}
+    .map{
+        width:100%;
+    }
 
-.letter-preview p{
+    .buttons{
+        height:180px;
+    }
 
-font-size:22px;
+    #countdown{
+        gap:10px;
+    }
 
-}
+    #countdown div{
+        width:70px;
+        height:70px;
+    }
 
-.card{
+    #countdown span{
+        font-size:22px;
+    }
 
-padding:35px 25px;
+    .success-card{
+        padding:35px;
+    }
 
-}
+    .success-card h1{
+        font-size:40px;
+    }
 
-.card h1{
-
-font-size:40px;
-
-}
-
-.card h3{
-
-font-size:20px;
-
-}
-
-.message{
-
-font-size:17px;
-
-line-height:1.8;
-
-}
-
-.map{
-
-width:100%;
-
-}
-
-.buttons{
-
-height:180px;
-
-}
-
-.buttons button{
-
-position:relative;
-
-display:block;
-
-margin:15px auto;
-
-left:0 !important;
-
-top:0 !important;
-
-}
-
-#countdown{
-
-gap:10px;
-
-}
-
-#countdown div{
-
-width:75px;
-
-height:75px;
-
-}
-
-#countdown span{
-
-font-size:24px;
-
-}
-
-.success-card{
-
-padding:35px;
-
-}
-
-.success-card h1{
-
-font-size:42px;
-
-}
-
-.success-card p{
-
-font-size:18px;
-
-}
-
+    .success-card p{
+        font-size:17px;
+    }
 }
