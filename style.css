@@ -1,6 +1,9 @@
 /*=====================================================
-                RESET
+        INVITATION SPA PREMIUM
+        STYLE.CSS - PARTIE 1
 ======================================================*/
+
+/************* RESET *************/
 
 *{
     margin:0;
@@ -16,56 +19,55 @@ body{
 
     font-family:'Poppins',sans-serif;
 
-    background:
-    radial-gradient(circle at top,#ffffff,#f9f5ef);
+    background:#f8f4ee;
 
     overflow-x:hidden;
-
-    min-height:100vh;
 
     color:#555;
 
 }
 
-/*=====================================================
-            PETALES
-======================================================*/
+/************* FOND *************/
 
-#petals{
+.background{
 
     position:fixed;
 
     inset:0;
 
-    pointer-events:none;
+    background:
+    radial-gradient(circle at top,#ffffff,#f7f2ea 60%,#efe5d7);
 
-    z-index:2;
+    z-index:-10;
 
 }
 
-/*=====================================================
-            CONFETTIS
-======================================================*/
+.background::before{
 
-#confetti{
+    content:"";
 
-    position:fixed;
+    position:absolute;
 
     inset:0;
 
-    pointer-events:none;
+    background:
 
-    z-index:20;
+    radial-gradient(circle at 15% 20%,
+    rgba(255,255,255,.9),
+    transparent 35%),
+
+    radial-gradient(circle at 80% 75%,
+    rgba(255,255,255,.6),
+    transparent 40%);
 
 }
 
-/*=====================================================
-                INTRO
-======================================================*/
+/************* SECTION *************/
 
-#intro{
+#home{
 
     width:100%;
+
     height:100vh;
 
     display:flex;
@@ -74,42 +76,121 @@ body{
 
     align-items:center;
 
-    background:
-
-    linear-gradient(rgba(255,255,255,.2),
-    rgba(255,255,255,.2)),
-
-    radial-gradient(circle,#fff,#f5efe6);
-
 }
 
-/*=====================================================
-            ENVELOPPE
-======================================================*/
-
-.envelope-container{
+.intro{
 
     text-align:center;
 
 }
 
-.envelope{
+.intro h3{
 
-    position:relative;
+    font-family:'Cormorant Garamond',serif;
 
-    width:360px;
+    color:#8f6e45;
 
-    height:230px;
+    font-size:44px;
 
-    cursor:pointer;
-
-    perspective:1200px;
+    margin-bottom:35px;
 
 }
 
-/* Base */
+/*************************************************
+                ENVELOPPE
+**************************************************/
 
-.envelope::before{
+#envelope{
+
+    position:relative;
+
+    width:430px;
+
+    height:300px;
+
+    margin:auto;
+
+    cursor:pointer;
+
+    transition:.8s;
+
+}
+
+/************* OMBRE *************/
+
+.shadow{
+
+    position:absolute;
+
+    width:320px;
+
+    height:30px;
+
+    left:50%;
+
+    bottom:-18px;
+
+    transform:translateX(-50%);
+
+    background:rgba(0,0,0,.18);
+
+    border-radius:50%;
+
+    filter:blur(18px);
+
+}
+
+/************* DOS *************/
+
+.back{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#dec4a4;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+    0 25px 50px rgba(0,0,0,.15);
+
+}
+
+/************* LETTRE *************/
+
+.letter{
+
+    position:absolute;
+
+    left:22px;
+
+    right:22px;
+
+    bottom:18px;
+
+    height:245px;
+
+    background:white;
+
+    border-radius:10px;
+
+    z-index:2;
+
+    overflow:hidden;
+
+    transition:1.2s ease;
+
+    box-shadow:
+
+    0 12px 30px rgba(0,0,0,.15);
+
+}
+
+.letter::before{
 
     content:"";
 
@@ -117,17 +198,89 @@ body{
 
     inset:0;
 
-    background:#d8c3a5;
+    background:
 
-    border-radius:6px;
+    linear-gradient(
 
-    box-shadow:
+        135deg,
 
-    0 20px 50px rgba(0,0,0,.15);
+        rgba(255,255,255,.95),
+
+        rgba(248,245,239,.95)
+
+    );
 
 }
 
-/* Rabat */
+.letter-content{
+
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+.letter-content h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    color:#8f6e45;
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+    text-align:center;
+
+}
+
+.letter-content p{
+
+    text-align:center;
+
+    color:#777;
+
+    line-height:1.8;
+
+}
+
+/************* FACE AVANT *************/
+
+.front{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:175px;
+
+    background:#e5c9a5;
+
+    clip-path:polygon(0 0,50% 75%,100% 0,100% 100%,0 100%);
+
+    z-index:8;
+
+}
+
+/************* RABAT *************/
 
 .flap{
 
@@ -139,93 +292,91 @@ body{
 
     width:100%;
 
-    height:120px;
+    height:175px;
 
-    background:#ccb08c;
+    background:#cfaf87;
 
     clip-path:polygon(0 0,100% 0,50% 100%);
 
     transform-origin:top;
 
-    transition:1s;
+    transition:1.2s;
 
-    z-index:5;
+    z-index:12;
 
 }
 
-/* Lettre */
+/************* SCEAU *************/
 
-.letter-preview{
+.seal{
 
     position:absolute;
 
-    width:92%;
+    left:50%;
 
-    height:190px;
+    top:105px;
 
-    background:white;
+    transform:translateX(-50%);
 
-    left:4%;
+    width:62px;
 
-    top:20px;
+    height:62px;
 
-    border-radius:8px;
+    border-radius:50%;
+
+    background:#b62d38;
+
+    color:white;
 
     display:flex;
-
-    flex-direction:column;
 
     justify-content:center;
 
     align-items:center;
 
-    transition:1s;
-
-    z-index:2;
-
-}
-
-.letter-preview h2{
-
-    font-size:40px;
-
-}
-
-.letter-preview p{
-
-    margin-top:10px;
-
-    font-family:'Cormorant Garamond',serif;
-
     font-size:28px;
 
+    z-index:20;
+
+    transition:.5s;
+
 }
 
-/* Animation */
+/************* OUVERTURE *************/
 
-.envelope.open .flap{
+#envelope.open .seal{
+
+    opacity:0;
+
+    transform:translateX(-50%) scale(.2);
+
+}
+
+#envelope.open .flap{
 
     transform:rotateX(180deg);
 
-}
-
-.envelope.open .letter-preview{
-
-    transform:translateY(-130px);
+    z-index:1;
 
 }
 
-/*=====================================================
-            TEXTE
-======================================================*/
+#envelope.open .letter{
 
-.open-text{
+    transform:translateY(-185px);
 
-    margin-top:40px;
+    z-index:15;
+
+}
+
+/************* TEXTE *************/
+
+.click{
+
+    margin-top:45px;
+
+    color:#8f6e45;
 
     font-size:18px;
-
-    color:#9d7b5b;
 
     animation:pulse 2s infinite;
 
@@ -233,35 +384,38 @@ body{
 
 @keyframes pulse{
 
-50%{
-
-transform:scale(1.08);
-
-}
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
 
 }
 
 /*=====================================================
-            INVITATION
+        STYLE.CSS - PARTIE 2
+        CARTE D'INVITATION
 ======================================================*/
+
+/********************
+    SECTION INVITATION
+********************/
 
 #invitation{
 
     display:none;
 
+    min-height:100vh;
+
+    padding:80px 20px;
+
     justify-content:center;
 
     align-items:center;
 
-    min-height:100vh;
-
-    padding:70px 20px;
-
 }
 
-/*=====================================================
-            CARTE
-======================================================*/
+/********************
+        CARTE
+********************/
 
 .card{
 
@@ -271,21 +425,25 @@ transform:scale(1.08);
 
     max-width:95%;
 
-    background:white;
+    background:#fffdf9;
 
-    border-radius:25px;
+    border-radius:26px;
+
+    overflow:hidden;
 
     padding:70px;
 
     box-shadow:
 
-    0 30px 80px rgba(0,0,0,.15);
+        0 25px 70px rgba(0,0,0,.15);
 
-    overflow:hidden;
+    animation:cardAppear 1s ease;
 
 }
 
-/* Bordure dorée */
+/********************
+    BORDURE
+********************/
 
 .card::before{
 
@@ -295,7 +453,7 @@ transform:scale(1.08);
 
     inset:18px;
 
-    border:2px solid #d8b36b;
+    border:2px solid #d7b56d;
 
     border-radius:18px;
 
@@ -303,135 +461,141 @@ transform:scale(1.08);
 
 }
 
-/*=====================================================
-            DECORATIONS
-======================================================*/
+/********************
+    DECORATIONS
+********************/
 
-.leaf{
-
-    position:absolute;
-
-    font-size:55px;
-
-    opacity:.18;
-
-}
-
-.leaf1{
-
-    top:25px;
-
-    left:25px;
-
-    transform:rotate(-25deg);
-
-}
-
-.leaf2{
-
-    bottom:25px;
-
-    right:25px;
-
-    transform:rotate(150deg);
-
-}
-
-.flower{
+.decor{
 
     position:absolute;
 
-    font-size:28px;
+    width:220px;
 
-    opacity:.9;
+    height:220px;
 
-}
+    opacity:.15;
 
-.flower1{
+    border-radius:50%;
 
-    top:60px;
-
-    right:70px;
+    filter:blur(25px);
 
 }
 
-.flower2{
+.decor1{
 
-    bottom:60px;
+    top:-70px;
 
-    left:70px;
+    left:-70px;
+
+    background:#c9dfc5;
 
 }
 
-/*=====================================================
-                TITRES
-======================================================*/
+.decor2{
+
+    top:-70px;
+
+    right:-70px;
+
+    background:#dbe9cf;
+
+}
+
+.decor3{
+
+    bottom:-70px;
+
+    left:-70px;
+
+    background:#d4e4c9;
+
+}
+
+.decor4{
+
+    bottom:-70px;
+
+    right:-70px;
+
+    background:#c7dcc1;
+
+}
+
+/********************
+        TITRES
+********************/
 
 .card h1{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:56px;
+    font-size:60px;
+
+    color:#8f6e45;
 
     text-align:center;
-
-    color:#8c6b42;
-
-    margin-bottom:10px;
 
 }
 
-.card h3{
+.card h2{
+
+    margin-top:10px;
 
     text-align:center;
+
+    font-size:28px;
 
     font-weight:300;
 
-    color:#9a8c78;
-
-    font-size:24px;
-
-    margin-bottom:25px;
+    color:#aa8d66;
 
 }
 
-.separator{
+/********************
+    LIGNE
+********************/
 
-    width:120px;
+.line{
+
+    width:150px;
 
     height:2px;
 
-    background:#d6b46d;
+    margin:30px auto 45px;
 
-    margin:25px auto 40px;
+    background:linear-gradient(
+        to right,
+        transparent,
+        #d7b56d,
+        transparent);
 
 }
 
-/*=====================================================
-                MESSAGE
-======================================================*/
+/********************
+        TEXTE
+********************/
 
-.message{
+.card p{
 
-    font-size:19px;
-
-    line-height:1.9;
-
-    text-align:center;
-
-    color:#555;
-
-    max-width:700px;
+    max-width:720px;
 
     margin:auto;
 
+    text-align:center;
+
+    line-height:2;
+
+    font-size:20px;
+
+    color:#666;
+
 }
 
-/*=====================================================
-                INFOS
-======================================================*/
+/********************
+    DATE + HEURE
+********************/
 
-.infos{
+.details{
 
     display:flex;
 
@@ -445,77 +609,98 @@ transform:scale(1.08);
 
 }
 
-.info{
+.box{
 
-    background:#faf7f2;
+    width:220px;
 
-    border:1px solid #eadfcf;
+    padding:22px;
+
+    background:white;
 
     border-radius:18px;
 
-    padding:18px 30px;
+    text-align:center;
 
-    font-size:18px;
+    border:1px solid #ece2d4;
 
-    display:flex;
+    box-shadow:
 
-    align-items:center;
+        0 10px 30px rgba(0,0,0,.06);
 
-    gap:12px;
-
-    transition:.4s;
+    transition:.35s;
 
 }
 
-.info:hover{
+.box:hover{
 
-    transform:translateY(-6px);
-
-    box-shadow:0 12px 25px rgba(0,0,0,.08);
+    transform:translateY(-8px);
 
 }
 
-/*=====================================================
-            BOUTON MAP
-======================================================*/
-
-.map{
+.box span{
 
     display:block;
 
-    width:280px;
+    font-size:34px;
 
-    margin:40px auto;
+    margin-bottom:12px;
+
+}
+
+.box strong{
+
+    color:#8f6e45;
+
+    font-size:18px;
+
+}
+
+/********************
+        LOCALISATION
+********************/
+
+.location{
+
+    display:block;
+
+    width:340px;
+
+    max-width:100%;
+
+    margin:45px auto;
+
+    padding:18px;
 
     text-align:center;
 
     text-decoration:none;
 
-    background:#b9935a;
-
     color:white;
-
-    padding:15px;
 
     border-radius:50px;
 
-    font-size:18px;
+    background:linear-gradient(
+        135deg,
+        #d7b56d,
+        #b98d49);
 
-    transition:.4s;
-
-}
-
-.map:hover{
-
-    background:#8e6f42;
-
-    transform:scale(1.05);
+    transition:.35s;
 
 }
 
-/*=====================================================
-            COMPTE A REBOURS
-======================================================*/
+.location:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 20px 40px rgba(185,141,73,.35);
+
+}
+
+/********************
+    COMPTE À REBOURS
+********************/
 
 #countdown{
 
@@ -523,7 +708,7 @@ transform:scale(1.08);
 
     justify-content:center;
 
-    gap:20px;
+    gap:18px;
 
     flex-wrap:wrap;
 
@@ -541,8 +726,6 @@ transform:scale(1.08);
 
     border-radius:18px;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
     display:flex;
 
     flex-direction:column;
@@ -551,217 +734,63 @@ transform:scale(1.08);
 
     align-items:center;
 
+    border:1px solid #ece2d4;
+
+    box-shadow:
+
+        0 10px 25px rgba(0,0,0,.08);
+
 }
 
 #countdown span{
 
-    font-size:32px;
+    font-size:34px;
 
-    font-weight:bold;
+    font-family:'Cormorant Garamond',serif;
 
-    color:#b9935a;
+    color:#b98d49;
 
 }
 
 #countdown small{
 
-    margin-top:6px;
+    margin-top:5px;
 
-    color:#777;
+    color:#888;
+
+    font-size:13px;
 
 }
 
-/*=====================================================
-                QUESTION
-======================================================*/
+/********************
+    QUESTION
+********************/
 
 .question{
 
-    margin-top:20px;
-
-    margin-bottom:35px;
+    margin-top:30px;
 
     text-align:center;
 
-    font-size:24px;
+    font-size:34px;
 
     font-family:'Cormorant Garamond',serif;
 
-    color:#8c6b42;
+    color:#8f6e45;
 
 }
 
-/*=====================================================
-                BOUTONS
-======================================================*/
-
-.buttons{
-
-    position:relative;
-
-    width:100%;
-
-    height:140px;
-
-}
-
-.buttons button{
-
-    position:absolute;
-
-    width:210px;
-
-    height:60px;
-
-    border:none;
-
-    border-radius:50px;
-
-    font-size:18px;
-
-    cursor:pointer;
-
-    transition:.35s;
-
-    font-weight:600;
-
-    font-family:'Poppins',sans-serif;
-
-}
-
-#yes{
-
-    left:calc(50% - 240px);
-
-    background:linear-gradient(135deg,#d8b36b,#b9935a);
-
-    color:white;
-
-    box-shadow:0 10px 25px rgba(185,147,90,.35);
-
-}
-
-#yes:hover{
-
-    transform:translateY(-5px) scale(1.05);
-
-    box-shadow:0 20px 35px rgba(185,147,90,.45);
-
-}
-
-#no{
-
-    left:calc(50% + 20px);
-
-    background:white;
-
-    color:#8c6b42;
-
-    border:2px solid #d8b36b;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-#no:hover{
-
-    background:#fffaf3;
-
-}
-
-/*=====================================================
-                SUCCESS
-======================================================*/
-
-#success{
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    min-height:100vh;
-
-    padding:30px;
-
-    background:
-
-    radial-gradient(circle,#fff,#f9f5ef);
-
-}
-
-.success-card{
-
-    background:white;
-
-    width:700px;
-
-    max-width:95%;
-
-    padding:60px;
-
-    border-radius:25px;
-
-    text-align:center;
-
-    box-shadow:0 30px 80px rgba(0,0,0,.15);
-
-    position:relative;
-
-}
-
-.success-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:15px;
-
-    border:2px solid #d8b36b;
-
-    border-radius:18px;
-
-}
-
-.success-card h1{
-
-    font-family:'Cormorant Garamond',serif;
-
-    color:#b9935a;
-
-    font-size:55px;
-
-    margin-bottom:25px;
-
-}
-
-.success-card p{
-
-    font-size:20px;
-
-    line-height:1.8;
-
-}
-
-/*=====================================================
-                ANIMATIONS
-======================================================*/
-
-.fadeIn{
-
-    animation:fadeIn 1.2s ease;
-
-}
-
-@keyframes fadeIn{
+/********************
+    ANIMATION
+********************/
+
+@keyframes cardAppear{
 
     from{
 
         opacity:0;
 
-        transform:translateY(50px);
+        transform:translateY(60px);
 
     }
 
@@ -775,53 +804,283 @@ transform:scale(1.08);
 
 }
 
-.zoomIn{
-
-    animation:zoomIn .8s ease;
-
-}
-
-@keyframes zoomIn{
-
-    from{
-
-        opacity:0;
-
-        transform:scale(.7);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-}
-
 /*=====================================================
-                RESPONSIVE
+        STYLE.CSS - PARTIE 3
+        BOUTONS - MERCI - RESPONSIVE
 ======================================================*/
 
-@media(max-width:768px){
+/********************
+      BOUTONS
+********************/
 
-.envelope{
+.buttons{
 
-width:280px;
+    position:relative;
 
-height:190px;
+    width:100%;
+
+    height:170px;
+
+    margin-top:40px;
 
 }
 
-.letter-preview{
+.buttons button{
 
-height:155px;
+    position:absolute;
+
+    width:220px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+    -webkit-tap-highlight-color:transparent;
 
 }
 
-.letter-preview p{
+/********************
+      OUI
+********************/
+
+#yes{
+
+    left:calc(50% - 240px);
+
+    top:50px;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #d7b56d,
+        #b88d4d);
+
+    box-shadow:0 15px 35px rgba(184,141,77,.35);
+
+}
+
+#yes:hover{
+
+    transform:translateY(-6px) scale(1.04);
+
+}
+
+/********************
+      NON
+********************/
+
+#no{
+
+    left:calc(50% + 20px);
+
+    top:50px;
+
+    background:white;
+
+    color:#8f6e45;
+
+    border:2px solid #d7b56d;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/********************
+      PAGE MERCI
+********************/
+
+#success{
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:30px;
+
+}
+
+.thanks{
+
+    width:760px;
+
+    max-width:95%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:70px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.15);
+
+}
+
+.thanks::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:18px;
+
+    border:2px solid #d7b56d;
+
+    border-radius:18px;
+
+}
+
+.thanks h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:62px;
+
+    color:#b88d4d;
+
+    margin-bottom:25px;
+
+}
+
+.thanks p{
+
+    font-size:21px;
+
+    line-height:2;
+
+    color:#666;
+
+}
+
+/********************
+      MOBILE
+********************/
+
+@media(max-width:900px){
+
+.card{
+
+padding:45px 28px;
+
+}
+
+.card h1{
+
+font-size:46px;
+
+}
+
+.card h2{
+
+font-size:24px;
+
+}
+
+.card p{
+
+font-size:18px;
+
+}
+
+.box{
+
+width:100%;
+
+}
+
+.location{
+
+width:100%;
+
+}
+
+}
+
+@media(max-width:600px){
+
+#home{
+
+padding:20px;
+
+}
+
+.intro h3{
+
+font-size:34px;
+
+}
+
+#envelope{
+
+width:300px;
+
+height:210px;
+
+}
+
+.shadow{
+
+width:220px;
+
+}
+
+.front{
+
+height:120px;
+
+}
+
+.flap{
+
+height:120px;
+
+}
+
+.letter{
+
+left:15px;
+
+right:15px;
+
+height:165px;
+
+}
+
+#envelope.open .letter{
+
+transform:translateY(-130px);
+
+}
+
+.seal{
+
+width:50px;
+
+height:50px;
+
+top:70px;
 
 font-size:22px;
 
@@ -829,67 +1088,47 @@ font-size:22px;
 
 .card{
 
-padding:35px 25px;
+padding:28px 18px;
 
 }
 
 .card h1{
 
-font-size:40px;
+font-size:38px;
 
 }
 
-.card h3{
+.card h2{
 
-font-size:20px;
+font-size:22px;
 
 }
 
-.message{
+.card p{
 
-font-size:17px;
+font-size:16px;
 
 line-height:1.8;
 
 }
 
-.map{
+.details{
 
-width:100%;
-
-}
-
-.buttons{
-
-height:180px;
+gap:15px;
 
 }
 
-.buttons button{
+.box{
 
-position:relative;
-
-display:block;
-
-margin:15px auto;
-
-left:0 !important;
-
-top:0 !important;
-
-}
-
-#countdown{
-
-gap:10px;
+padding:18px;
 
 }
 
 #countdown div{
 
-width:75px;
+width:70px;
 
-height:75px;
+height:70px;
 
 }
 
@@ -899,19 +1138,59 @@ font-size:24px;
 
 }
 
-.success-card{
+.question{
 
-padding:35px;
+font-size:26px;
 
 }
 
-.success-card h1{
+/* Boutons */
+
+.buttons{
+
+height:180px;
+
+}
+
+#yes{
+
+left:50%;
+
+top:10px;
+
+transform:translateX(-50%);
+
+}
+
+#yes:hover{
+
+transform:translateX(-50%) scale(1.03);
+
+}
+
+#no{
+
+left:50%;
+
+top:95px;
+
+transform:translateX(-50%);
+
+}
+
+.thanks{
+
+padding:35px 22px;
+
+}
+
+.thanks h1{
 
 font-size:42px;
 
 }
 
-.success-card p{
+.thanks p{
 
 font-size:18px;
 
@@ -919,4 +1198,26 @@ font-size:18px;
 
 }
 
+/********************
+      SCROLLBAR
+********************/
 
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#d7b56d;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#faf8f4;
+
+}
