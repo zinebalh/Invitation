@@ -153,11 +153,11 @@ body{
 .seal-heart {
     position: absolute;
     left: 50%;
-    top: 112px;
+    top: 25px;
     transform: translate(-50%, -50%);
-    font-size: 34px;
+    font-size: 32px;
     z-index: 11;
-    transition: 1s;
+transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /*=====================================================
