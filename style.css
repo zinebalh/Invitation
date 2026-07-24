@@ -87,149 +87,77 @@ body{
             ENVELOPPE
 ======================================================*/
 
-.envelope-container{
-
-    text-align:center;
-
-}
-
 .envelope{
-
     position:relative;
-
     width:360px;
-
     height:230px;
-
     cursor:pointer;
-
-    perspective:1200px;
-
 }
 
-/* Base */
+/* Corps */
 
 .envelope::before{
-
     content:"";
-
     position:absolute;
-
     inset:0;
-
     background:#d8c3a5;
-
     border-radius:6px;
-
-    box-shadow:
-
-    0 20px 50px rgba(0,0,0,.15);
-
-}
-
-/* Rabat */
-
-.flap{
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:120px;
-
-    background:#ccb08c;
-
-    clip-path:polygon(0 0,100% 0,50% 100%);
-
-    transform-origin:top;
-
-    transition:1s;
-
-    z-index:5;
-
+    z-index:1;
 }
 
 /* Lettre */
 
 .letter-preview{
-
     position:absolute;
-
-    width:92%;
-
-    height:190px;
-
-    background:white;
-
-    left:4%;
-
+    left:18px;
+    right:18px;
     top:20px;
-
+    height:180px;
+    background:#fff;
     border-radius:8px;
-
     display:flex;
-
-    flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
-
-    transition:1s;
-
     z-index:2;
-
+    transition:1s ease;
 }
 
-.letter-preview h2{
+/* Rabat */
 
-    font-size:40px;
-
+.flap{
+    position:absolute;
+    inset:0;
+    background:#ccb08c;
+    clip-path:polygon(0 0,100% 0,50% 62%);
+    transform-origin:top;
+    z-index:5;
+    transition:1s ease;
 }
 
-.letter-preview p{
-
-    margin-top:10px;
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:28px;
-
-}
-
-/* Animation */
-
-.envelope.open .flap{
-
-    transform:rotateX(180deg);
-
-}
-
-.envelope.open .letter-preview{
-
-    transform:translateY(-130px);
-
-}
-
+/* Coeur */
 
 .seal-heart{
     position:absolute;
     left:50%;
-    top:108px;
+    top:112px;
     transform:translate(-50%,-50%);
     font-size:34px;
-    z-index:10;
-    pointer-events:none;
+    z-index:6;
     transition:1s;
+}
+
+/* Ouverture */
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter-preview{
+    transform:translateY(-120px);
 }
 
 .envelope.open .seal-heart{
     opacity:0;
-    transform:translate(-50%,-70px) scale(0.5);
 }
 
 /*=====================================================
@@ -903,7 +831,7 @@ height:180px;
 
 #no{
     left:50%;
-    top:110px;
+    top:120px;
     transform:translateX(-50%);
 }
 
