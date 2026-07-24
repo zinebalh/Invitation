@@ -156,7 +156,7 @@ body{
     top:112px;
     transform:translate(-50%,-50%);
     font-size:34px;
-    z-index:1;
+    z-index:6;
     transition:1s;
 }
 
