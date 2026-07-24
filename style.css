@@ -215,6 +215,23 @@ body{
 
 }
 
+
+.seal-heart{
+    position:absolute;
+    left:50%;
+    top:108px;
+    transform:translate(-50%,-50%);
+    font-size:34px;
+    z-index:10;
+    pointer-events:none;
+    transition:1s;
+}
+
+.envelope.open .seal-heart{
+    opacity:0;
+    transform:translate(-50%,-70px) scale(0.5);
+}
+
 /*=====================================================
             TEXTE
 ======================================================*/
