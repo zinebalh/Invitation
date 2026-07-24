@@ -150,14 +150,14 @@ body{
 }
 
 /* 5. Cœur / Sceau */
-.seal-heart {
-    position: absolute;
-    left: 50%;
-    top: 112px;
-    transform: translate(-50%, -50%);
-    font-size: 32px;
-    z-index: 11;
-transition: transform 1s ease;
+.seal-heart{
+    position:absolute;
+    left:50%;
+    top:112px;
+    transform:translate(-50%,-50%);
+    font-size:34px;
+    z-index:6;
+    transition:1s;
 }
 
 /*=====================================================
