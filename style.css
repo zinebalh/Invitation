@@ -111,8 +111,8 @@ body{
     position:absolute;
     left:16px;
     right:16px;
-    bottom:0;          /* La lettre commence en bas */
-    height:180px;
+    bottom:-120;          /* La lettre commence en bas */
+    height:170px;
 
     background:#fff;
     border-radius:8px;
