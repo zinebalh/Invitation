@@ -156,16 +156,19 @@ setInterval(createPetal,400);
 
 function moveNoButton(){
 
-    const container = document.querySelector(".buttons");
+    const container=document.querySelector(".buttons");
 
-    const maxX = container.offsetWidth - noBtn.offsetWidth;
-    const maxY = container.offsetHeight - noBtn.offsetHeight;
+    const margin=10;
 
-    const x = Math.random() * Math.max(maxX,10);
-    const y = Math.random() * Math.max(maxY,10);
+    const maxX=container.clientWidth-noBtn.offsetWidth-margin;
+    const maxY=container.clientHeight-noBtn.offsetHeight-margin;
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    const x=Math.random()*maxX;
+    const y=Math.random()*maxY;
+
+    noBtn.style.position="absolute";
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
 }
 function escapeButton(e){
 
@@ -186,8 +189,32 @@ function escapeButton(e){
 
 }
 
-document.addEventListener("mousemove",escapeButton);
+document.addEventListener("mousemove",(e)=>{
 
+    const rect=noBtn.getBoundingClientRect();
+
+    const dx=e.clientX-(rect.left+rect.width/2);
+    const dy=e.clientY-(rect.top+rect.height/2);
+
+    const distance=Math.sqrt(dx*dx+dy*dy);
+
+    if(distance<130){
+        moveNoButton();
+    }
+
+});
+
+["touchstart","touchmove","pointerdown"].forEach(event=>{
+
+    noBtn.addEventListener(event,function(e){
+
+        e.preventDefault();
+
+        moveNoButton();
+
+    },{passive:false});
+
+});
 /* Compatible téléphone */
 
 ["touchstart","touchmove","pointerdown"].forEach(eventName => {
