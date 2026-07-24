@@ -111,15 +111,19 @@ body{
     position:absolute;
     left:18px;
     right:18px;
-    top:20px;
+    bottom:0;
     height:180px;
+
     background:#fff;
     border-radius:8px;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:2;
-    transition:1s ease;
+
+    z-index:3;
+
+    transition:transform .9s ease;
 }
 
 /* Rabat */
@@ -153,7 +157,8 @@ body{
 }
 
 .envelope.open .letter-preview{
-    transform:translateY(-120px);
+    transform:translateY(-145px);
+    z-index:20;
 }
 
 .envelope.open .seal-heart{
