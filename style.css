@@ -87,86 +87,96 @@ body{
             ENVELOPPE
 ======================================================*/
 
-.envelope{
-    position:relative;
-    width:360px;
-    height:230px;
-   overflow:hidden;
+.envelope {
+    position: relative;
+    width: 360px;
+    height: 230px;
+    overflow: hidden;
 }
 
-/* Corps */
-
-.envelope::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:#d8c3a5;
-    border-radius:6px;
-    z-index:1;
+/* 1. Fond arrière de l'enveloppe */
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #c3ab8a;
+    border-radius: 6px;
+    z-index: 1;
 }
 
-/* Lettre */
+/* 2. La carte/lettre à l'intérieur */
+.letter-preview {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 10px;
+    height: 170px;
+    background: #fff;
+    border-radius: 8px;
 
-.letter-preview{
-    position:absolute;
-    left:16px;
-    right:16px;
-    bottom:0;          /* La lettre commence en bas */
-    height:170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    background:#fff;
-    border-radius:8px;
+    /* Placée entre le fond (z-index 1) et le devant (z-index 5) */
+    z-index: 2; 
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    z-index:2;
-
-    transform:translateY(100px);   /* Cachée dans l'enveloppe */
-    transition:transform .9s ease;
+    /* Cachée au départ sous la pochette avant */
+    transform: translateY(40px);
+    transition: transform 0.9s ease;
 }
 
-/* Rabat */
-
-.flap{
-    position:absolute;
-    inset:0;
-    background:#ccb08c;
-    clip-path:polygon(0 0,100% 0,50% 62%);
-    transform-origin:top;
-    z-index:10;
-    transition:1s ease;
+/* 3. Pochette AVANT de l'enveloppe (qui masque le bas de la lettre) */
+.envelope::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #d8c3a5;
+    clip-path: polygon(0 40%, 50% 75%, 100% 40%, 100% 100%, 0 100%);
+    border-radius: 6px;
+    z-index: 5; /* Passe par-dessus la carte blanche */
+    pointer-events: none;
 }
 
-/* Coeur */
-
-.seal-heart{
-    position:absolute;
-    left:50%;
-    top:112px;
-    transform:translate(-50%,-50%);
-    font-size:34px;
-    z-index:6;
-    transition:1s;
+/* 4. Rabat du haut */
+.flap {
+    position: absolute;
+    inset: 0;
+    background: #ccb08c;
+    clip-path: polygon(0 0, 100% 0, 50% 62%);
+    transform-origin: top;
+    z-index: 10;
+    transition: 1s ease;
 }
 
-/* Ouverture */
-
-.envelope.open .flap{
-    transform:rotateX(180deg);
-    z-index:1;
+/* 5. Cœur / Sceau */
+.seal-heart {
+    position: absolute;
+    left: 50%;
+    top: 112px;
+    transform: translate(-50%, -50%);
+    font-size: 34px;
+    z-index: 11;
+    transition: 1s;
 }
 
-.envelope.open .letter-preview{
-    transform:translateY(-70px);
-    z-index:20;
+/*=====================================================
+            ANIMATIONS D'OUVERTURE
+======================================================*/
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
 }
 
-.envelope.open .seal-heart{
-    opacity:0;
+.envelope.open .letter-preview {
+    transform: translateY(-90px);
+    z-index: 6; /* Sort de l'enveloppe et passe au-dessus du devant */
 }
 
+.envelope.open .seal-heart {
+    opacity: 0;
+}
 /*=====================================================
             TEXTE
 ======================================================*/
