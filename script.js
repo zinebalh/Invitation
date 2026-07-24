@@ -154,26 +154,19 @@ setInterval(createPetal,400);
         BOUTON "NON" QUI S'ÉCHAPPE
 =====================================================*/
 
-function moveNoButton() {
+function moveNoButton(){
 
     const container = document.querySelector(".buttons");
 
-    const containerRect = container.getBoundingClientRect();
+    const maxX = container.offsetWidth - noBtn.offsetWidth;
+    const maxY = container.offsetHeight - noBtn.offsetHeight;
 
-    const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
-
-    const maxX = container.clientWidth - btnWidth;
-    const maxY = container.clientHeight - btnHeight;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const x = Math.random() * Math.max(maxX,10);
+    const y = Math.random() * Math.max(maxY,10);
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
-
 }
-
 function escapeButton(e){
 
     const rect = noBtn.getBoundingClientRect();
@@ -197,12 +190,11 @@ document.addEventListener("mousemove",escapeButton);
 
 /* Compatible téléphone */
 
-noBtn.addEventListener("touchstart",(e)=>{
-
-    e.preventDefault();
-
-    moveNoButton();
-
+["touchstart","touchmove","pointerdown"].forEach(eventName => {
+    noBtn.addEventListener(eventName, function(e){
+        e.preventDefault();
+        moveNoButton();
+    }, { passive:false });
 });
 
 /*====================================================
