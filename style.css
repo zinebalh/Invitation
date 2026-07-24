@@ -91,6 +91,7 @@ body{
     position:relative;
     width:360px;
     height:230px;
+   overflow:hidden;
     cursor:pointer;
 }
 
@@ -109,9 +110,9 @@ body{
 
 .letter-preview{
     position:absolute;
-    left:18px;
-    right:18px;
-    bottom:0;
+    left:16px;
+    right:16px;
+    bottom:0;          /* La lettre commence en bas */
     height:180px;
 
     background:#fff;
@@ -121,8 +122,9 @@ body{
     justify-content:center;
     align-items:center;
 
-    z-index:3;
+    z-index:2;
 
+    transform:translateY(80px);   /* Cachée dans l'enveloppe */
     transition:transform .9s ease;
 }
 
@@ -134,7 +136,7 @@ body{
     background:#ccb08c;
     clip-path:polygon(0 0,100% 0,50% 62%);
     transform-origin:top;
-    z-index:5;
+    z-index:10;
     transition:1s ease;
 }
 
@@ -154,10 +156,11 @@ body{
 
 .envelope.open .flap{
     transform:rotateX(180deg);
+    z-index:1;
 }
 
 .envelope.open .letter-preview{
-    transform:translateY(-145px);
+    transform:translateY(-70px);
     z-index:20;
 }
 
