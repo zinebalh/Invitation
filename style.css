@@ -132,7 +132,7 @@ body{
     position: absolute;
     inset: 0;
     background: #d8c3a5;
-    clip-path: polygon(0 20%, 50% 50%, 100% 20%, 100% 100%, 0 100%);
+    clip-path: polygon(0 100%, 50% 50%, 100% 100%, 100% 100%, 0 100%);
     border-radius: 6px;
     z-index: 5; /* Passe par-dessus la carte blanche */
     pointer-events: none;
